@@ -5,7 +5,7 @@ import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 void main() => runApp(MyApp());
-
+//este comentario es prueba xdxd
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -231,7 +231,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 );    
               },
-            child: Text("Login",
+            child: Text("LOGEAR",
                 textAlign: TextAlign.center,
                 style: style.copyWith(
                     color: Colors.white, fontWeight: FontWeight.bold)),
