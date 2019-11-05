@@ -2,6 +2,7 @@ import 'package:examen_flutter/main.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class Opinion extends StatelessWidget {
   static const String routeName = '/routes/Vendedores';
@@ -9,9 +10,15 @@ class Opinion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: AppBar(
-          title: Text("Calificación"),
-          actions: <Widget>[
+        appBar: GradientAppBar(
+        title: Text('Producto'),
+        gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
+                  LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [const Color(0xFF064B71), const Color(0xFF2692C2)],
+              ),
+              actions: <Widget>[
             // action button
             IconButton(
               icon: Icon(Icons.home),
@@ -21,7 +28,7 @@ class Opinion extends StatelessWidget {
               },
             ),
           ],
-        ),
+      ),
         drawer: AppDrawer(),
         body: 
           Center(

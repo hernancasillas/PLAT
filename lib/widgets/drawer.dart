@@ -9,7 +9,15 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [const Color(0xFF064B71), const Color(0xFF2692C2)],
+              ),
+          ),
+          child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
           _createHeader(context),
@@ -41,40 +49,47 @@ class AppDrawer extends StatelessWidget {
                 builder: (BuildContext context) => Vendedores()));
               },
             ),
+            SizedBox(height: 100,),
           ListTile(
-            title: Text('Hernan Casillas 1.0'),
+            title: Text('Hernan Casillas 1.0', style: TextStyle(fontSize: 15, color: Colors.white)),
             onTap: () {},
           ),
         ],
-      ),
+        ),
+        )
     );
   }
     
 }
 
 Widget _createHeader(BuildContext context) {
-        return UserAccountsDrawerHeader(
-              accountName: Text("Hernán Casillas", style: TextStyle(fontSize: 20.0),),
-              accountEmail: Text("h.casillas@danthop.com",style: TextStyle(fontSize: 20.0),),
-              currentAccountPicture: GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => Perfil()));
-              },
-              child: CircleAvatar(
-                minRadius: 80,
-                maxRadius: 120,
-                backgroundColor:
-                    Colors.white,
-                child: Text(
-                  "H",
-                  style: TextStyle(fontSize: 40.0),
-                ),
-              ),
+        return  
+        Center(
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 50,),
+                  GestureDetector(child: 
+                    SizedBox(
+                      height: 155.0,
+                       child: Image.asset(
+                        "assets/logo.png",
+                        fit: BoxFit.contain,
+                      ),
+                       
+                    ),
+                    onTap:() {
+                              Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => Perfil()));
+                            },
+                  ),
+                  SizedBox(height: 20,),
+                  Text('Username', style: TextStyle(fontSize: 20, color: Colors.white)),
+                  SizedBox(height: 20,)
+                ], 
             ),
-                
-              );
+          );
+        
+              
 }
 
 Widget _createDrawerItem(
@@ -82,10 +97,10 @@ Widget _createDrawerItem(
   return ListTile(
     title: Row(
       children: <Widget>[
-        Icon(icon, size: 30),
+        Icon(icon, size: 30, color: Colors.white,),
         Padding(
           padding: EdgeInsets.only(left: 8.0),
-          child: Text(text, style: TextStyle(fontSize: 20),),
+          child: Text(text, style: TextStyle(fontSize: 20, color: Colors.white),),
         )
       ],
     ),

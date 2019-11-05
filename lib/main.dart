@@ -2,6 +2,7 @@ import 'package:examen_flutter/routes/Producto.dart';
 import 'package:examen_flutter/routes/Registro.dart';
 import 'package:flutter/material.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,9 +37,18 @@ class MyHomePage extends StatefulWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
+      /* appBar: AppBar(
         title: Text('Home'),
-      ), 
+      ),  */
+      appBar: GradientAppBar(
+        title: Text('Home'),
+        gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
+                  LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [const Color(0xFF064B71), const Color(0xFF2692C2)],
+              ),
+      ),
       drawer: AppDrawer(),
       body: Center(
         
@@ -249,9 +259,15 @@ class _MyHomePageState extends State<MyHomePage> {
         );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home"),
-        actions: <Widget>[
+      appBar: GradientAppBar(
+        title: Text('Home'),
+        gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
+                  LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [const Color(0xFF064B71), const Color(0xFF2692C2)],
+              ),
+              actions: <Widget>[
             // action button
             IconButton(
               icon: Icon(Icons.home),

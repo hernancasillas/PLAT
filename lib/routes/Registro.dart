@@ -1,6 +1,8 @@
 import 'package:examen_flutter/main.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
+
 final nombre = TextEditingController();
 final edad = TextEditingController();
 final email = TextEditingController();
@@ -14,9 +16,25 @@ class Registro extends StatelessWidget {
     
     
     return new Scaffold(
-        appBar: AppBar(
-          title: Text("Registro"),
-        ),
+        appBar: GradientAppBar(
+        title: Text('Registro'),
+        gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
+                  LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [const Color(0xFF064B71), const Color(0xFF2692C2)],
+              ),
+              actions: <Widget>[
+            // action button
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                 Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => MainScreen()));
+              },
+            ),
+          ],
+      ),
         
         body: SnackBarPage(),
         );
