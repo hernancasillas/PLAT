@@ -3,6 +3,7 @@ import 'package:examen_flutter/routes/Registro.dart';
 import 'package:flutter/material.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 void main() => runApp(MyApp());
 //este comentario es prueba xdxd
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
         fontFamily: 'Montserrat'
       ),
-      home: MyHomePage(title: 'Examen'),
+      home: MyHomePage(title: 'PLAT'),
       
     );
   }
@@ -181,9 +182,32 @@ class MyHomePage extends StatefulWidget {
       ),
     );
   }
-} 
+}
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return new SplashScreen(
+      seconds: 5,
+      navigateAfterSeconds: new Login(),
+      title: new Text('Welcome to PLAT',
+      style: new TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 20.0
+      ),),
+      image: new Image.asset(
+                        "assets/logo.png",
+                      ),
+      backgroundColor: Colors.white,
+      styleTextUnderTheLoader: new TextStyle(),
+      photoSize: 100.0,
+      onClick: ()=>print("Flutter Egypt"),
+      loaderColor: Colors.red
+    );
+  }
+}
+
+class Login extends StatelessWidget {
   final username = TextEditingController();
   final password = TextEditingController();
   @override
@@ -260,7 +284,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: GradientAppBar(
-        title: Text('Home'),
+        title: Text('Login'),
         gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
                   LinearGradient(
                 begin: Alignment.topCenter,
