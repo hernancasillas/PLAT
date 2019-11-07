@@ -1,7 +1,9 @@
 import 'package:examen_flutter/main.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
+import 'package:examen_flutter/widgets/raisedgradbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:examen_flutter/routes/EditProfile.dart';
 
 class Perfil extends StatelessWidget {
   static const String routeName = '/routes/Perfil';
@@ -50,6 +52,21 @@ class Perfil extends StatelessWidget {
                     SizedBox(height: 20.0,),
                     Text('481-391-9369', style:TextStyle(fontSize: 25)),
                     SizedBox(height: 20.0),
+                    RaisedGradientButton(
+                     
+                      gradient: LinearGradient(
+                        colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
+                      ),
+                      onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => EditProfile()));
+                        },
+                      child: Text("Edit Profile",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold)
+                      ),          
+                    ),
                   ],
                 ),
               ),
