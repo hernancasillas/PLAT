@@ -1,5 +1,6 @@
 import 'package:examen_flutter/main.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
+import 'package:examen_flutter/widgets/raisedgradbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
@@ -17,7 +18,7 @@ class Registro extends StatelessWidget {
     
     return new Scaffold(
         appBar: GradientAppBar(
-        title: Text('Registro'),
+        title: Text('Welcome!'),
         gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
                   LinearGradient(
                 begin: Alignment.topCenter,
@@ -59,7 +60,7 @@ class SnackBarPage extends StatelessWidget {
           style: style,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              hintText: "Nombre",
+              hintText: "Name",
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
               controller: nombre,
@@ -68,29 +69,26 @@ class SnackBarPage extends StatelessWidget {
           style: style,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              hintText: "Celular",
+              hintText: "Password",
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
               controller: celular,
         );
       
-      final registerButton = Material(
-          elevation: 5.0,
-          borderRadius: BorderRadius.circular(30.0),
-          color: Color(0xff01A0C7),
-          child: MaterialButton(
-            minWidth: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+      final registerButton = RaisedGradientButton(
+            gradient: LinearGradient(
+            colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
+          ),
             onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => MainScreen()));
             },
-            child: Text("Registrarse",
+            child: Text("Sign Up",
                 textAlign: TextAlign.center,
                 style: style.copyWith(
                     color: Colors.white, fontWeight: FontWeight.bold)),
                     
-          ),
+          
         );
     return Center(
            child: Container(

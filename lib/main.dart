@@ -2,6 +2,7 @@ import 'package:examen_flutter/routes/Producto.dart';
 import 'package:examen_flutter/routes/Registro.dart';
 import 'package:flutter/material.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
+import 'package:examen_flutter/widgets/raisedgradbutton.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:splashscreen/splashscreen.dart';
 
@@ -232,15 +233,13 @@ class Login extends StatelessWidget {
                   OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
           controller: password,
         );
-    final loginButton = Material(
-          elevation: 5.0,
-          borderRadius: BorderRadius.circular(30.0),
-          color: Color(0xff01A0C7),
-          child: MaterialButton(
-            minWidth: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            onPressed: () {
-              if(username.text == 'admin' && password.text =='admin')
+    final loginButton = RaisedGradientButton(
+          gradient: LinearGradient(
+            colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
+          ),
+          
+          onPressed: () {
+            if(username.text == 'admin' && password.text =='admin')
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => MainScreen()));
               else
@@ -255,31 +254,25 @@ class Login extends StatelessWidget {
                   },
                 );    
               },
-            child: Text("Log in",
-                textAlign: TextAlign.center,
-                style: style.copyWith(
-                    color: Colors.white, fontWeight: FontWeight.bold)),
-                    
-          ),
+          child: Text("Log in",
+            textAlign: TextAlign.center,
+            style: style.copyWith(
+              color: Colors.white, fontWeight: FontWeight.bold)),
         );
 
-        final registerButton = Material(
-          elevation: 5.0,
-          borderRadius: BorderRadius.circular(30.0),
-          color: Color(0xff01A0C7),
-          child: MaterialButton(
-            minWidth: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            onPressed: () {
+        final registerButton = RaisedGradientButton(
+          gradient: LinearGradient(
+            colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
+          ),
+          onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => Registro()));
             },
-            child: Text("Sign up",
-                textAlign: TextAlign.center,
-                style: style.copyWith(
-                    color: Colors.white, fontWeight: FontWeight.bold)),
-                    
-          ),
+          child: Text("Sign up",
+            textAlign: TextAlign.center,
+            style: style.copyWith(
+            color: Colors.white, fontWeight: FontWeight.bold)
+          ),          
         );
 
     return Scaffold(

@@ -4,6 +4,8 @@ import 'package:examen_flutter/routes/Opinion.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:examen_flutter/widgets/raisedgradbutton.dart';
+
 
 class Producto1 extends StatelessWidget {
   static const String routeName = '/routes/Producto1';
@@ -15,41 +17,32 @@ class Producto1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-    final opinionButton = Material(
-          elevation: 5.0,
-          borderRadius: BorderRadius.circular(30.0),
-          color: Color(0xff01A0C7),
-          child: MaterialButton(
-            minWidth: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Opinion()));
-            },
-            child: Text("Opiniones",
-                textAlign: TextAlign.center,
-                style: style.copyWith(
-                    color: Colors.white, fontWeight: FontWeight.bold)),
-                    
-          ),
+    final opinionButton = RaisedGradientButton(
+      gradient: LinearGradient(
+        colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
+       ),
+      onPressed: () {
+        Navigator.of(context).push(MaterialPageRoute(
+        builder: (BuildContext context) => Opinion()));
+      },
+      child: Text("Reviews",
+        textAlign: TextAlign.center,
+        style: style.copyWith(
+          color: Colors.white, fontWeight: FontWeight.bold)),
         );
-final comprarButton = Material(
-          elevation: 5.0,
-          borderRadius: BorderRadius.circular(30.0),
-          color: Color(0xff01A0C7),
-          child: MaterialButton(
-            minWidth: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Carrito()));
-            },
-            child: Text("Comprar",
-                textAlign: TextAlign.center,
-                style: style.copyWith(
-                    color: Colors.white, fontWeight: FontWeight.bold)),
-                    
-          ),
+final comprarButton = RaisedGradientButton(
+        gradient: LinearGradient(
+          colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
+        ),
+         onPressed: () {
+           Navigator.of(context).push(MaterialPageRoute(
+            builder: (BuildContext context) => Carrito()));
+          },
+          child: Text("Comprar",
+            textAlign: TextAlign.center,
+            style: style.copyWith(
+               color: Colors.white, fontWeight: FontWeight.bold)),
+
         );
 
     return new Scaffold(

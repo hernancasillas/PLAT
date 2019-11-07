@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import './user.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:examen_flutter/main.dart';
+import 'package:examen_flutter/widgets/raisedgradbutton.dart';
 
 
 class Checkout extends StatefulWidget {
@@ -17,23 +18,18 @@ class _HomeMaterialState extends State {
   @override
   Widget build(BuildContext context) {
       TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-  final pagarButton = Material(
-          elevation: 5.0,
-          borderRadius: BorderRadius.circular(30.0),
-          color: Color(0xff01A0C7),
-          child: MaterialButton(
-            minWidth: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            onPressed: () {
-                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Confirmacion()));
-              },
-            child: Text("Pagar",
-                textAlign: TextAlign.center,
-                style: style.copyWith(
-                    color: Colors.white, fontWeight: FontWeight.bold)),
-                    
-          ),
+  final pagarButton = RaisedGradientButton(
+        gradient: LinearGradient(
+          colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
+        ),
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => Confirmacion()));
+         },
+        child: Text("Make Payment",
+          textAlign: TextAlign.center,
+          style: style.copyWith(
+            color: Colors.white, fontWeight: FontWeight.bold)),
         );
     return Scaffold(
         appBar: GradientAppBar(
@@ -71,7 +67,7 @@ class _HomeMaterialState extends State {
 
                           TextFormField(
                             decoration:
-                                InputDecoration(labelText: 'No. de Tarjeta'),
+                                InputDecoration(labelText: 'Card Number'),
                             validator: (value) {
                               if (value.isEmpty) {
                                 return 'Numero de tarjeta';
@@ -106,7 +102,7 @@ class _HomeMaterialState extends State {
         padding: const EdgeInsets.all(20.0),
         child: TextFormField(
             decoration:
-              InputDecoration(labelText: 'Mes'),
+              InputDecoration(labelText: 'Month'),
         ),
       ),
     ),
@@ -115,7 +111,7 @@ class _HomeMaterialState extends State {
         padding: const EdgeInsets.all(20.0),
         child: TextFormField(
             decoration:
-              InputDecoration(labelText: 'Año'),
+              InputDecoration(labelText: 'Year'),
               )
       ),
     ),
