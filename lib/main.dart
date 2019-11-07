@@ -255,7 +255,7 @@ class Login extends StatelessWidget {
                   },
                 );    
               },
-            child: Text("LOGEAR",
+            child: Text("Log in",
                 textAlign: TextAlign.center,
                 style: style.copyWith(
                     color: Colors.white, fontWeight: FontWeight.bold)),
@@ -274,7 +274,7 @@ class Login extends StatelessWidget {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => Registro()));
             },
-            child: Text("Registrarse",
+            child: Text("Sign up",
                 textAlign: TextAlign.center,
                 style: style.copyWith(
                     color: Colors.white, fontWeight: FontWeight.bold)),
