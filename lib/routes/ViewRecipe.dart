@@ -32,7 +32,23 @@ class Vendedores extends StatelessWidget {
         body: Center(
           child:Column(
             children:<Widget>[
-              Text("Plantilla"),
+              Row(
+                mainAxisAlignment = mainAxisAlignment.spaceEvenly,
+                children:<Widget>[
+                  Container(
+                    child(
+                      Text("last eaten: March 5th, 2019"),
+                    ),
+                  ),
+                  Container(
+                    child(
+                      Image.asset(
+                        "assets/crepa.png",
+                      ),
+                    ),
+                  ),
+                ]
+              ),
             ],
           ),
           )

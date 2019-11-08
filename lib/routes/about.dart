@@ -30,7 +30,9 @@ class about extends StatelessWidget {
       ),
         drawer: AppDrawer(),
         body: Center(
-          child: Text("PLANTILLA")
+          child: Text("We are a team of developers from UASLP.
+              This app was made with the intention of helping you out when you run out of ideas for your menu or you're simply too tired to think about it
+              We hope you enjoy this app")
           )
       );
   }
