@@ -3,14 +3,14 @@ import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
-class about extends StatelessWidget {
-  static const String routeName = '/routes/about';
+class ForgotPassword extends StatelessWidget {
+  static const String routeName = '/routes/Vendedores';
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: GradientAppBar(
-        title: Text('About Us'),
+        title: Text('Forgot Password'),
         gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
                   LinearGradient(
                 begin: Alignment.topCenter,
@@ -30,15 +30,12 @@ class about extends StatelessWidget {
       ),
         drawer: AppDrawer(),
         body: Center(
-          child: Column(
-            children: <Widget>[
-              Padding(padding: const EdgeInsets.all(10),
-              child: Text("We are a team of developers from UASLP. \nThis app was made with the intention of helping you out when you run out of ideas for your menu or you're simply too tired to think about it. \nWe hope you enjoy this app.", style: TextStyle(fontSize: 20)),)
-              
+          child:Column(
+            children:<Widget>[
+              Text("Plantilla"),
             ],
           ),
-        )
-          
+          )
       );
   }
 }

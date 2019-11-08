@@ -1,5 +1,6 @@
 import 'package:examen_flutter/routes/Producto.dart';
 import 'package:examen_flutter/routes/Registro.dart';
+import 'package:examen_flutter/routes/ForgotPassword.dart';
 import 'package:flutter/material.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:examen_flutter/widgets/raisedgradbutton.dart';
@@ -326,7 +327,17 @@ class Login extends StatelessWidget {
                       height: 10.0,
                     ),
                     registerButton,
-                    
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    GestureDetector(
+                      child: Text('Forgot your password?', style: TextStyle(fontSize: 18, decoration: TextDecoration.underline, fontWeight: FontWeight.bold)
+                      ,),
+                      onTap: () => {
+                        Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => ForgotPassword()))  
+                      }
+                      ,)
                   ],
                 ),
               ),

@@ -4,6 +4,7 @@ import 'package:examen_flutter/routes/Productos.dart';
 import 'package:examen_flutter/routes/Promociones.dart';
 import 'package:examen_flutter/routes/Vendedores.dart';
 import 'package:examen_flutter/routes/about.dart';
+import 'package:examen_flutter/routes/PrivacyAgreement.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
