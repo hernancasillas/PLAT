@@ -56,7 +56,27 @@ flutter:
     - chris.png
     - entregas.png
     - comments.png
-    - crepa.jpg
+    - crepa.png
+    - albondigas.png
+    - arroz_frito.png
+    - arroz_vapor.png
+    - bistec_encebollado.png
+    - cereal.png
+    - cheesecake.png
+    - elote.png
+    - enchiladas.png
+    - enfrijoladas.png
+    - fideo.png
+    - huevos_estrellados.png
+    - lentejas.png
+    - omelette.png
+    - sandwich.png
+    - spaghetti.png
+    - steak.png
+    - sushi.png
+    - tallarines.png
+    - verduras.png
+    - zanahorias.png
 
   fonts:
     - family: Montserrat
