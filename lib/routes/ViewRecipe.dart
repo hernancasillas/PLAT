@@ -3,14 +3,14 @@ import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
-class Vendedores extends StatelessWidget {
-  static const String routeName = '/routes/Vendedores';
+class ViewRecipe extends StatelessWidget {
+  static const String routeName = '/routes/ViewRecipe';
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: GradientAppBar(
-        title: Text('PLANTILLA'),
+        title: Text('View Recipe'),
         gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
                   LinearGradient(
                 begin: Alignment.topCenter,
@@ -33,19 +33,22 @@ class Vendedores extends StatelessWidget {
           child:Column(
             children:<Widget>[
               Row(
-                mainAxisAlignment = mainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children:<Widget>[
                   Container(
-                    child(
+                    child :
                       Text("last eaten: March 5th, 2019"),
-                    ),
+                    
                   ),
                   Container(
-                    child(
-                      Image.asset(
-                        "assets/crepa.png",
+                    child:
+                    SizedBox(
+                      height: 100,
+                      child:  Image.asset(
+                        "assets/crepa.jpg",
                       ),
-                    ),
+                    ) 
+                     
                   ),
                 ]
               ),

@@ -7,7 +7,7 @@ class Promociones extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var style = new TextStyle(fontSize: 20);
+    
     return new Scaffold(
         appBar: AppBar(
           title: Text("Promociones"),

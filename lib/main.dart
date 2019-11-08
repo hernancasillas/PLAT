@@ -1,11 +1,13 @@
 import 'package:examen_flutter/routes/Producto.dart';
 import 'package:examen_flutter/routes/Registro.dart';
 import 'package:examen_flutter/routes/ForgotPassword.dart';
+import 'package:examen_flutter/routes/ViewRecipe.dart';
 import 'package:flutter/material.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:examen_flutter/widgets/raisedgradbutton.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() => runApp(MyApp());
 //este comentario es prueba xdxd
@@ -36,6 +38,7 @@ class MyHomePage extends StatefulWidget {
 
  class MainScreen extends StatelessWidget  {
    final style =  new TextStyle(fontFamily: 'Montserrat');
+   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +47,7 @@ class MyHomePage extends StatefulWidget {
         title: Text('Home'),
       ),  */
       appBar: GradientAppBar(
-        title: Text('Home'),
+        title: Text('Dashboard'),
         gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
                   LinearGradient(
                 begin: Alignment.topCenter,
@@ -58,7 +61,33 @@ class MyHomePage extends StatefulWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(
+            Text('My Recipes', style: TextStyle(fontSize: 25)),
+            CarouselSlider(
+            height: 150.0,
+            
+            items: [1,2,3,4,5].map((i) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return GestureDetector(
+                    child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    //margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    height: 150,
+                    child: Image.asset("assets/crepa.jpg", fit: BoxFit.contain,)
+                    //Text('text $i', style: TextStyle(fontSize: 16.0),)
+                    ),
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => ViewRecipe()));
+                    },
+                  );
+                },
+              );
+            }).toList(),
+            
+          ),
+          
+            /* SizedBox(
           height: 160.0,
           child: ListView(
             scrollDirection: Axis.horizontal,
@@ -101,18 +130,27 @@ class MyHomePage extends StatefulWidget {
               ),
             ],
           ),
+        ), */
+        SizedBox(height: 20,),
+        Divider(),
+        Text('On the menu', style: TextStyle(fontSize: 25)),
+        Container(
+          height: 100,
+          width: 100,
+          child: Image.asset('assets/crepa.jpg'),
         ),
         SizedBox(height: 20,),
         Divider(),
+        Text('Shopping List', style: TextStyle(fontSize: 25)),
         Expanded(
            child: ListView(
           children: <Widget>[
             SizedBox(height: 20,),
             Card(
               child: ListTile(
-                leading: Icon(Icons.book, size: 50),
-                title: Text('Nike AirForce 1', style: TextStyle(fontSize: 30)),
-                subtitle: Text('Precio: \$\$\$', style: TextStyle(fontSize: 20)),
+                leading: Icon(Icons.shopping_basket, size: 50),
+                title: Text('Eggs', style: TextStyle(fontSize: 30)),
+                subtitle: Text('Amount: 12', style: TextStyle(fontSize: 20)),
                 trailing: Icon(Icons.more_vert),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -123,39 +161,26 @@ class MyHomePage extends StatefulWidget {
             SizedBox(height: 20,),
             Card(
               child: ListTile(
-                leading: Icon(Icons.book, size: 50),
-                title: Text('Champion Hoodie', style: TextStyle(fontSize: 30)),
-                subtitle: Text('Precio: \$\$\$', style: TextStyle(fontSize: 20)),
+                leading: Icon(Icons.shopping_basket, size: 50),
+                title: Text('Cheese', style: TextStyle(fontSize: 30)),
+                subtitle: Text('Amount: 1', style: TextStyle(fontSize: 20)),
                 trailing: Icon(Icons.more_vert),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Producto1(image: 'assets/hoodie.png')));
+                  builder: (BuildContext context) => Producto1(image: 'assets/sneakers.png')));
                 }
               ),
             ),
             SizedBox(height: 20,),
             Card(
               child: ListTile(
-                leading: Icon(Icons.book, size: 50),
-                title: Text('Supreme Fanny Pack', style: TextStyle(fontSize: 30)),
-                subtitle: Text('Precio: \$\$\$', style: TextStyle(fontSize: 20)),
+                leading: Icon(Icons.shopping_basket, size: 50),
+                title: Text('Tortilla', style: TextStyle(fontSize: 30)),
+                subtitle: Text('Amount: 1 kg', style: TextStyle(fontSize: 20)),
                 trailing: Icon(Icons.more_vert),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Producto1(image: 'assets/supreme.png')));
-                }
-              ),
-            ),
-            SizedBox(height: 20,),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.book, size: 50),
-                title: Text('Supreme Tee', style: TextStyle(fontSize: 30)),
-                subtitle: Text('Precio: \$\$\$', style: TextStyle(fontSize: 20)),
-                trailing: Icon(Icons.more_vert),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Producto1(image: 'assets/tee.png')));
+                  builder: (BuildContext context) => Producto1(image: 'assets/sneakers.png')));
                 }
               ),
             ),
@@ -241,7 +266,7 @@ class Login extends StatelessWidget {
           
           onPressed: () {
             if(username.text == 'admin' && password.text =='admin')
-                Navigator.of(context).push(MaterialPageRoute(
+                return Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => MainScreen()));
               else
                 return showDialog(

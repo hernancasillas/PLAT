@@ -55,7 +55,7 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => about()));
+                builder: (BuildContext context) => About()));
               },
             ),
             _createDrawerItem(icon: Icons.shopping_basket, text: 'Privacy Agreement',

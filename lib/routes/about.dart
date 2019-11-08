@@ -3,7 +3,7 @@ import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
-class about extends StatelessWidget {
+class About extends StatelessWidget {
   static const String routeName = '/routes/about';
 
   @override
