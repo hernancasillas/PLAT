@@ -3,14 +3,14 @@ import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
-class Vendedores extends StatelessWidget {
-  static const String routeName = '/routes/Vendedores';
+class about extends StatelessWidget {
+  static const String routeName = '/routes/about';
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: GradientAppBar(
-        title: Text('PLANTILLA'),
+        title: Text('About Us'),
         gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
                   LinearGradient(
                 begin: Alignment.topCenter,
@@ -30,13 +30,7 @@ class Vendedores extends StatelessWidget {
       ),
         drawer: AppDrawer(),
         body: Center(
-          child:Column(
-            children:<Widget>[
-              Text("We are a team of developers from UASLP.
-              This app was made with the intention of helping you out when you run out of ideas for your menu or you're simply too tired to think about it
-              We hope you enjoy this app");
-            ],
-          ),
+          child: Text("PLANTILLA")
           )
       );
   }

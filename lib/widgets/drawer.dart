@@ -3,6 +3,7 @@ import 'package:examen_flutter/routes/Perfil.dart';
 import 'package:examen_flutter/routes/Productos.dart';
 import 'package:examen_flutter/routes/Promociones.dart';
 import 'package:examen_flutter/routes/Vendedores.dart';
+import 'package:examen_flutter/routes/about.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -21,7 +22,7 @@ class AppDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           _createHeader(context),
-          _createDrawerItem(icon: Icons.style,text: 'Categorías', 
+          _createDrawerItem(icon: Icons.style,text: 'Categories', 
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
@@ -47,6 +48,20 @@ class AppDrawer extends StatelessWidget {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
                 builder: (BuildContext context) => Vendedores()));
+              },
+            ),
+            _createDrawerItem(icon: Icons.shopping_basket, text: 'About Us',
+            onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => about()));
+              },
+            ),
+            _createDrawerItem(icon: Icons.shopping_basket, text: 'Privacy Agreement',
+            onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => PrivacyAgreement()));
               },
             ),
             SizedBox(height: 100,),
