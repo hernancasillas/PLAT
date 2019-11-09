@@ -45,7 +45,7 @@ class ViewRecipe extends StatelessWidget {
                     SizedBox(
                       height: 100,
                       child:  Image.asset(
-                        "assets/crepa.jpg",
+                        "assets/crepa.png",
                       ),
                     ) 
                      

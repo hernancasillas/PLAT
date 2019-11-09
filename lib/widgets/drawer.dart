@@ -1,8 +1,8 @@
-import 'package:examen_flutter/routes/Categorias.dart';
+
 import 'package:examen_flutter/routes/Perfil.dart';
-import 'package:examen_flutter/routes/Productos.dart';
-import 'package:examen_flutter/routes/Promociones.dart';
-import 'package:examen_flutter/routes/Vendedores.dart';
+import 'package:examen_flutter/routes/Plantilla.dart';
+import 'package:examen_flutter/routes/FAQ.dart';
+import 'package:examen_flutter/routes/GoPremium.dart';
 import 'package:examen_flutter/routes/about.dart';
 import 'package:examen_flutter/routes/PrivacyAgreement.dart';
 import 'package:flutter/material.dart';
@@ -23,42 +23,42 @@ class AppDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           _createHeader(context),
-          _createDrawerItem(icon: Icons.style,text: 'Categories', 
+          _createDrawerItem(icon: Icons.account_circle,text: 'Following', 
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => Categorias()));
+              builder: (BuildContext context) => Perfil()));
             },),
-          _createDrawerItem(icon: Icons.event, text: 'Productos', 
+          _createDrawerItem(icon: Icons.settings, text: 'Settings', 
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => Productos()));
+              builder: (BuildContext context) => Plantilla()));
             },
           ),
           Divider(),
-          _createDrawerItem(icon: Icons.shopping_basket, text: 'Promociones',
-            onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => Promociones()));
-              },
-            ),
-          _createDrawerItem(icon: Icons.people_outline, text: 'Vendedores', 
-            onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => Vendedores()));
-              },
-            ),
-            _createDrawerItem(icon: Icons.shopping_basket, text: 'About Us',
+          _createDrawerItem(icon: Icons.info_outline, text: 'About Us',
             onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
                 builder: (BuildContext context) => About()));
               },
             ),
-            _createDrawerItem(icon: Icons.shopping_basket, text: 'Privacy Agreement',
+          _createDrawerItem(icon: Icons.question_answer, text: 'FAQ', 
+            onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => FAQ()));
+              },
+            ),
+            _createDrawerItem(icon: Icons.lock_open, text: 'Go Premium',
+            onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => GoPremium()));
+              },
+            ),
+            _createDrawerItem(icon: Icons.perm_device_information , text: 'Privacy Agreement',
             onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(

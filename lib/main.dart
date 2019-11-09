@@ -61,6 +61,7 @@ class MyHomePage extends StatefulWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 20,),
             Text('My Recipes', style: TextStyle(fontSize: 25)),
             CarouselSlider(
             height: 150.0,
@@ -73,7 +74,7 @@ class MyHomePage extends StatefulWidget {
                     width: MediaQuery.of(context).size.width,
                     //margin: EdgeInsets.symmetric(horizontal: 5.0),
                     height: 150,
-                    child: Image.asset("assets/crepa.jpg", fit: BoxFit.contain,)
+                    child: Image.asset("assets/crepa.png", fit: BoxFit.contain,)
                     //Text('text $i', style: TextStyle(fontSize: 16.0),)
                     ),
                     onTap: (){
@@ -137,7 +138,7 @@ class MyHomePage extends StatefulWidget {
         Container(
           height: 100,
           width: 100,
-          child: Image.asset('assets/crepa.jpg'),
+          child: Image.asset('assets/crepa.png'),
         ),
         SizedBox(height: 20,),
         Divider(),
