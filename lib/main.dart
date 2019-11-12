@@ -2,6 +2,7 @@ import 'package:examen_flutter/routes/Producto.dart';
 import 'package:examen_flutter/routes/Registro.dart';
 import 'package:examen_flutter/routes/ForgotPassword.dart';
 import 'package:examen_flutter/routes/ViewRecipe.dart';
+import 'package:examen_flutter/routes/AddRecipe.dart';
 import 'package:flutter/material.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:examen_flutter/widgets/raisedgradbutton.dart';
@@ -54,6 +55,16 @@ class MyHomePage extends StatefulWidget {
                 end: Alignment.bottomCenter,
                 colors: [const Color(0xFF064B71), const Color(0xFF2692C2)],
               ),
+        actions: <Widget>[
+            // action button
+            IconButton(
+              icon: Icon(Icons.add_circle),
+              onPressed: () {
+                 Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => AddRecipe()));
+              },
+            ),
+          ],
       ),
       drawer: AppDrawer(),
       body: Center(
