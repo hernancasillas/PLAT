@@ -10,7 +10,7 @@ class ViewRecipe extends StatelessWidget {
   final String image;
   final String title;
   
-  ViewRecipe({Key key, @required this.image this.title}) : super(key: key);
+  ViewRecipe({Key key, @required this.image, this.title}) : super(key: key);
 
 
   @override
