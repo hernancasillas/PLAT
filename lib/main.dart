@@ -1,3 +1,4 @@
+import 'package:examen_flutter/routes/GoPremium.dart';
 import 'package:examen_flutter/routes/Producto.dart';
 import 'package:examen_flutter/routes/Registro.dart';
 import 'package:examen_flutter/routes/ForgotPassword.dart';
@@ -166,7 +167,7 @@ class MyHomePage extends StatefulWidget {
                 trailing: Icon(Icons.more_vert),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Producto1(image: 'assets/sneakers.png')));
+                  builder: (BuildContext context) => GoPremium()));
                 }
               ),
             ),
@@ -179,7 +180,7 @@ class MyHomePage extends StatefulWidget {
                 trailing: Icon(Icons.more_vert),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Producto1(image: 'assets/sneakers.png')));
+                  builder: (BuildContext context) => GoPremium()));
                 }
               ),
             ),
@@ -192,7 +193,7 @@ class MyHomePage extends StatefulWidget {
                 trailing: Icon(Icons.more_vert),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Producto1(image: 'assets/sneakers.png')));
+                  builder: (BuildContext context) => GoPremium()));
                 }
               ),
             ),
