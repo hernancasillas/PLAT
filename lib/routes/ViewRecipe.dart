@@ -8,9 +8,9 @@ class ViewRecipe extends StatelessWidget {
   static const String routeName = '/routes/ViewRecipe';
 
   final String image;
-  final String title;
+  final String titulo;
   
-  ViewRecipe({Key key, @required this.image, this.title}) : super(key: key);
+  ViewRecipe({Key key, @required this.image, this.titulo}) : super(key: key);
 
 
   @override
@@ -44,7 +44,7 @@ class ViewRecipe extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 20, 15, 0),
                 child:              
-                  Text(title, style:TextStyle(fontSize: 25),),
+                  Text(titulo, style:TextStyle(fontSize: 25),),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(95,5,0,0),
