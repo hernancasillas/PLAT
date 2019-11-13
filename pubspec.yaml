@@ -47,6 +47,7 @@ flutter:
 
   assets:
     - logo.png
+    - logofac.jpg
     - sneakers.png
     - hoodie.png
     - supreme.png

@@ -30,11 +30,14 @@ class About extends StatelessWidget {
       ),
         drawer: AppDrawer(),
         body: Center(
-          child: Column(
+          child: ListView(
             children: <Widget>[
-              Padding(padding: const EdgeInsets.all(10),
-              child: Text("We are a team of developers from UASLP. \nThis app was made with the intention of helping you out when you run out of ideas for your menu or you're simply too tired to think about it. \nWe hope you enjoy this app.", style: TextStyle(fontSize: 20)),)
-              
+              Padding(padding: const EdgeInsets.fromLTRB(30,30,30,0),
+              child: Text("We are PLAT, a team of developers from the UASLP. \n\nThis app was made with the intention of helping you out when you run out of ideas for your menu or you're simply too tired to think about it. \nWe hope you enjoy this app.", style: TextStyle(fontSize: 20)),
+              ),
+              Padding(padding:const EdgeInsets.all(1),
+              child:
+              Image.asset("assets/logofac.jpg"))
             ],
           ),
         )

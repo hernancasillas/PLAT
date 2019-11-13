@@ -1,6 +1,7 @@
 import 'package:examen_flutter/routes/GoPremium.dart';
 import 'package:examen_flutter/routes/Producto.dart';
 import 'package:examen_flutter/routes/Registro.dart';
+import 'package:examen_flutter/routes/Menu.dart';
 import 'package:examen_flutter/routes/ForgotPassword.dart';
 import 'package:examen_flutter/routes/ViewRecipe.dart';
 import 'package:examen_flutter/routes/AddRecipe.dart';
@@ -150,7 +151,20 @@ class MyHomePage extends StatefulWidget {
         Container(
           height: 100,
           width: 100,
-          child: Image.asset('assets/crepa.png'),
+          child: GestureDetector(
+                    child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    //margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    height: 150,
+                    child: Image.asset("assets/crepa.png", fit: BoxFit.contain,)
+                    //Text('text $i', style: TextStyle(fontSize: 16.0),)
+                    ),
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => Menu()));
+                    },
+                  ),
+        
         ),
         SizedBox(height: 20,),
         Divider(),
