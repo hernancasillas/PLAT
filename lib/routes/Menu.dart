@@ -57,7 +57,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/albondigas.png')));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/albondigas.png', title: 'Meatballs')));
                         },
                       ),
         
@@ -91,7 +91,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cereal.png')));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cereal.png' title: 'Cereal')));
                         },
                     ),
         
@@ -125,7 +125,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/arroz_frito.png')));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/arroz_frito.png' title:'Fried Rice')));
                         },
                     ),
         
@@ -159,7 +159,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cheesecake.png')));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cheesecake.png' title:'Cheesecake')));
                         },
                     ),
         
@@ -191,7 +191,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enchiladas.png')));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enchiladas.png' title:'Enchiladas')));
                         },
                     ),
         
@@ -223,7 +223,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enfrijoladas.png')));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enfrijoladas.png' title: 'Enfrijoladas')));
                         },
                     ),
         
@@ -255,7 +255,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/lentejas.png')));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/lentejas.png' title: 'Lentils')));
                         },
                     ),
         

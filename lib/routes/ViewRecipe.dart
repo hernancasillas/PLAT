@@ -8,8 +8,9 @@ class ViewRecipe extends StatelessWidget {
   static const String routeName = '/routes/ViewRecipe';
 
   final String image;
+  final String title;
   
-  ViewRecipe({Key key, @required this.image}) : super(key: key);
+  ViewRecipe({Key key, @required this.image this.title}) : super(key: key);
 
 
   @override
@@ -37,7 +38,7 @@ class ViewRecipe extends StatelessWidget {
         drawer: AppDrawer(),
         body:ListView(
           children:<Widget>[
-         Column(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
             children:<Widget>[
               Padding(

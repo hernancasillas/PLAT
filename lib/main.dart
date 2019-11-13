@@ -62,8 +62,8 @@ class MyHomePage extends StatefulWidget {
             IconButton(
               icon: Icon(Icons.add_circle),
               onPressed: () {
-                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => AddRecipe()));
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => AddRecipe(image: 'assets/crepe.png', title: 'Banana Crepes')));
               },
             ),
           ],
