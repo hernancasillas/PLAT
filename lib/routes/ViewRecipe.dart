@@ -7,6 +7,11 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class ViewRecipe extends StatelessWidget {
   static const String routeName = '/routes/ViewRecipe';
 
+  final String image;
+  
+  ViewRecipe({Key key, @required this.image}) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -23,7 +28,7 @@ class ViewRecipe extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.home),
               onPressed: () {
-                 Navigator.of(context).push(MaterialPageRoute(
+                Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => MainScreen()));
               },
             ),
@@ -68,7 +73,7 @@ class ViewRecipe extends StatelessWidget {
                       SizedBox(
                         height: 100,
                         child:  Image.asset(
-                          "assets/crepa.png",
+                          image,
                         ),
                       ) 
                       

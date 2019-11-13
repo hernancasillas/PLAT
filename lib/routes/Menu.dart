@@ -23,7 +23,7 @@ class Menu extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.home),
               onPressed: () {
-                 Navigator.of(context).push(MaterialPageRoute(
+                Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => MainScreen()));
               },
             ),
@@ -57,18 +57,18 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/albondigas.png')));
                         },
                       ),
         
-                     ),
+                    ),
                       
                     ],
                   ),
                 ),
                 ),
                 SizedBox(height:5),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.all(30),
                 child: Container(
                   height:100,
@@ -91,7 +91,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cereal.png')));
                         },
                     ),
         
@@ -125,7 +125,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/arroz_frito.png')));
                         },
                     ),
         
@@ -159,7 +159,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cheesecake.png')));
                         },
                     ),
         
@@ -168,7 +168,7 @@ class Menu extends StatelessWidget {
                   ),
                 ),
                 ),
-                 Padding(
+              Padding(
                 padding: const EdgeInsets.all(30),
                 child: Container(
                   height:100,
@@ -191,7 +191,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enchiladas.png')));
                         },
                     ),
         
@@ -223,7 +223,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enfrijoladas.png')));
                         },
                     ),
         
@@ -255,7 +255,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/lentejas.png')));
                         },
                     ),
         
