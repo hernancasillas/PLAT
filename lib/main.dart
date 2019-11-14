@@ -106,7 +106,7 @@ class MyHomePage extends StatefulWidget {
                     ),
                     onTap: (){
                       Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => ViewRecipe()));
+                      builder: (BuildContext context) => ViewRecipe(image: 'assets/crepa.png', titulo: 'Banana Crepes')));
                     },
                   );
                 },
