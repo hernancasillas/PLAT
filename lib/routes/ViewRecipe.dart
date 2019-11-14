@@ -44,7 +44,7 @@ class ViewRecipe extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 20, 15, 0),
                 child:              
-                  Text('Hola', style:TextStyle(fontSize: 25),),
+                  Text(titulo, style:TextStyle(fontSize: 25),),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(95,5,0,0),

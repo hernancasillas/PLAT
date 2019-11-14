@@ -209,24 +209,40 @@ class Menu extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text("Saturday 9th:\n\nEnfrijoladas",style:TextStyle(fontSize: 20),),
-                      Container(
-                      height: 100,
-                      width: 200,
-                      child: GestureDetector(
-                        child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        height: 150,
-                        child: Image.asset("assets/enfrijoladas.png", fit: BoxFit.contain,)
-                        //Text('text $i', style: TextStyle(fontSize: 16.0),)
+                      Column(
+                        children: <Widget>[
+                        Center(
+                          child:
+                        Text("Saturday 10th:\n\nEnfrijoladas",style:TextStyle(fontSize: 20),),
+                        
                         ),
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enfrijoladas.png', titulo: 'Enfrijoladas')));
-                        },
-                    ),
-        
+                        ],
+                        
+                        ),
+                        Column(
+                        
+                        children:<Widget>[
+                          Center(
+                            child:
+                            Container(
+                            height: 100,
+                            width: 200,
+                            child: GestureDetector(
+                              child: SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              //margin: EdgeInsets.symmetric(horizontal: 5.0),
+                              height: 150,
+                              child: Image.asset("assets/enfrijoladas.png", fit: BoxFit.contain,)
+                              //Text('text $i', style: TextStyle(fontSize: 16.0),)
+                              ),
+                              onTap: (){
+                                Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => ViewRecipe(image: 'assets/enfrijoladas.png', titulo: 'Enfrijoladas')));
+                              },
+                          ),
+                          ),
+                        ),
+                          ],
                   ),
                     ],
                   ),
@@ -243,29 +259,38 @@ class Menu extends StatelessWidget {
                     children: <Widget>[
                       Column(
                         children: <Widget>[
+                        Center(
+                          child:
                         Text("Sunday 11th:\n\nLentils",style:TextStyle(fontSize: 20),),
                         
+                        ),
                         ],
+                        
                         ),
                       Column(
+                        
                         children:<Widget>[
-                        Container(
-                          height: 100,
-                          width: 200,
-                          child: GestureDetector(
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                              height: 150,
-                              child: Image.asset("assets/lentejas.png", fit: BoxFit.contain,)
-                              //Text('text $i', style: TextStyle(fontSize: 16.0),)
+                          Center(
+                            child:
+                            Container(
+                              height: 100,
+                              width: 200,
+                              child: GestureDetector(
+                                child: SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  //margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                  height: 150,
+                                  child: Image.asset("assets/lentejas.png", fit: BoxFit.contain,)
+                                  //Text('text $i', style: TextStyle(fontSize: 16.0),)
+                                ),
+                                onTap: (){
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) => ViewRecipe(image: 'assets/lentejas.png', titulo: 'Lentils')));
+                                },
+                              ),
+
                             ),
-                            onTap: (){
-                              Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => ViewRecipe(image: 'assets/lentejas.png', titulo: 'Lentils')));
-                            },
                           ),
-                        ),
                         ],
                       ),
                       ],
