@@ -10,5 +10,5 @@ class Routes {
   static const String productos = Productos.routeName;
   static const String vendedores = Vendedores.routeName;
   static const String promociones = Promociones.routeName;
-  static const String registro = Registro.routeName;
+  
 }

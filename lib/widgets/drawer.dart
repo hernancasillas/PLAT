@@ -5,9 +5,11 @@ import 'package:examen_flutter/routes/FAQ.dart';
 import 'package:examen_flutter/routes/GoPremium.dart';
 import 'package:examen_flutter/routes/about.dart';
 import 'package:examen_flutter/routes/PrivacyAgreement.dart';
+import 'package:examen_flutter/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
+  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -63,6 +65,12 @@ class AppDrawer extends StatelessWidget {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
                 builder: (BuildContext context) => PrivacyAgreement()));
+              },
+            ),
+            _createDrawerItem(icon: Icons.exit_to_app , text: 'Sign Out',
+            onTap: () async {
+                Navigator.of(context).pop();
+                await _auth.signOut();
               },
             ),
             SizedBox(height: 100,),

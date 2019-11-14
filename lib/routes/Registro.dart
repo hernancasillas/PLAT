@@ -1,4 +1,5 @@
 import 'package:examen_flutter/main.dart';
+import 'package:examen_flutter/services/auth.dart';
 import 'package:examen_flutter/widgets/raisedgradbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
@@ -8,79 +9,81 @@ final edad = TextEditingController();
 final email = TextEditingController();
 final celular = TextEditingController();
 TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-class Registro extends StatelessWidget {
-  static const String routeName = '/routes/Perfil';
-  
+
+class Register extends StatefulWidget {
+
+  final Function toggleView;
+  Register({this.toggleView});
+
   @override
-  Widget build(BuildContext context) {
-    
-    
-    return new Scaffold(
-        appBar: GradientAppBar(
-        title: Text('Welcome!'),
-        gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
-                  LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [const Color(0xFF064B71), const Color(0xFF2692C2)],
-              ),
-              actions: <Widget>[
-            // action button
-            IconButton(
-              icon: Icon(Icons.home),
-              onPressed: () {
-                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => MainScreen()));
-              },
-            ),
-          ],
-      ),
-        
-        body: SnackBarPage(),
-        );
-  }
+  _RegisterState createState() => _RegisterState();
 }
 
+class _RegisterState extends State<Register> {
+  static const String routeName = '/routes/Perfil';
 
+  final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
 
-class SnackBarPage extends StatelessWidget {
+  String email = '';
+  String passwd = '';
+  String username = '';
+  String error = '';
+  
+
   @override
   Widget build(BuildContext context) {
-    final emailField = TextField(
+    
+    final emailField = TextFormField(
           style: style,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               hintText: "Email",
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-              controller: email,
+            validator: (val) => val.isEmpty ? 'Enter your email!' : null,
+            onChanged: (val) {
+              setState(() => email = val);
+            },    
         );
-    final nombreField = TextField(
+    final nombreField = TextFormField(
           style: style,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              hintText: "Name",
+              hintText: "Username",
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-              controller: nombre,
+          
+          onChanged: (val) {
+              setState(() => username = val);
+          },   
         );
-    final celularField = TextField(
+    final passwordField = TextFormField(
+          obscureText: true,
           style: style,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               hintText: "Password",
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-              controller: celular,
+          validator: (val) => val.length < 6 ? '6 or more characters, please!' : null,
+          onChanged: (val) {
+              setState(() => passwd = val);
+          },
         );
       
       final registerButton = RaisedGradientButton(
             gradient: LinearGradient(
             colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
           ),
-            onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => MainScreen()));
+            onPressed: () async {
+              if(_formKey.currentState.validate())
+              {
+                dynamic result = await _auth.registerWithEmailAndPassword(email, passwd);
+                if(result == null){
+                  setState(() => error = 'Please supply a valid email');
+                }
+              }
             },
             child: Text("Sign Up",
                 textAlign: TextAlign.center,
@@ -89,57 +92,68 @@ class SnackBarPage extends StatelessWidget {
                     
           
         );
-    return Center(
-           child: Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(36.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 50.0,
-                      width: 50.0,
-                      child: IconButton(
-                        padding: new EdgeInsets.all(0.0),
-                        color: Colors.grey,
-                        icon: Icon(Icons.photo_camera, size:50.0),
-                        onPressed: () => {
-                          snackBar2,
-                            Scaffold.of(context).showSnackBar(snackBar2)
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      height: 50.0,
-                      width: 50.0,
-                      child: IconButton(
-                        padding: new EdgeInsets.all(0.0),
-                        color: Colors.grey,
-                        icon: Icon(Icons.photo_library, size:50.0),
-                        onPressed: () => {
-                            snackBar1,
-                            Scaffold.of(context).showSnackBar(snackBar1)
-                        },
-                      ),
-                    ),
-                    
-                    
-                    SizedBox(height: 50.0),
-                    emailField,
-                    SizedBox(height: 20.0),
-                    nombreField,
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    celularField,
-                    SizedBox(height: 20.0),
-                    registerButton,
-                  ],
-                ),
+    
+    return new Scaffold(
+        appBar: GradientAppBar(
+        title: Text('Sign up to PLAT'),
+        gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
+                  LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [const Color(0xFF064B71), const Color(0xFF2692C2)],
               ),
-            )
+        actions: <Widget>[
+            // action button
+            FlatButton.icon(
+              icon: Icon(Icons.person, color: Colors.white,),
+              label: Text('Sign In', style: TextStyle(color: Colors.white)),
+              onPressed: () {
+                widget.toggleView();
+            },
+          ),
+        ],
+      ),
+        
+        body: ListView(
+                  children: <Widget>[
+            Form(
+            key: _formKey,
+            child: Center(
+               child: Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(36.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 155.0,
+                          child: Image.asset(
+                            "assets/logo.png",
+                            fit: BoxFit.contain,
+                          ), 
+                        ),
+                        SizedBox(height: 50.0),
+                        emailField,
+                        SizedBox(height: 20.0),
+                        nombreField,
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        passwordField,
+                        SizedBox(height: 20.0),
+                        registerButton,
+                        SizedBox(height: 15.0),
+                        Text(error, style: TextStyle(color: Colors.red, fontSize: 14),)
+                      ],
+                    ),
+                  ),
+                )
+              ),
+            ),
+                  ], 
+        )
         );
   }
 }

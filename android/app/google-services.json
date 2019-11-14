@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "444955893059",
+    "firebase_url": "https://plat-c7203.firebaseio.com",
+    "project_id": "plat-c7203",
+    "storage_bucket": "plat-c7203.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444955893059:android:c2707e009394064ea123f6",
+        "android_client_info": {
+          "package_name": "com.example.examen_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444955893059-gvd4t0ndnv3q4jiud6n99v1rhum40us9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQrxBOfemZhw6GSubES4wP0sGCWS5HjQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444955893059-gvd4t0ndnv3q4jiud6n99v1rhum40us9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
