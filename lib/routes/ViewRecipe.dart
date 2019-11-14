@@ -7,6 +7,12 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class ViewRecipe extends StatelessWidget {
   static const String routeName = '/routes/ViewRecipe';
 
+  final String image;
+  final String titulo;
+  
+  ViewRecipe({Key key, @required this.image, @required this.titulo}) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -23,7 +29,7 @@ class ViewRecipe extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.home),
               onPressed: () {
-                 Navigator.of(context).push(MaterialPageRoute(
+                Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => MainScreen()));
               },
             ),
@@ -32,13 +38,13 @@ class ViewRecipe extends StatelessWidget {
         drawer: AppDrawer(),
         body:ListView(
           children:<Widget>[
-         Column(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
             children:<Widget>[
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 20, 15, 0),
                 child:              
-                  Text("Banana crepes", style:TextStyle(fontSize: 25),),
+                  Text('Hola', style:TextStyle(fontSize: 25),),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(95,5,0,0),
@@ -68,7 +74,7 @@ class ViewRecipe extends StatelessWidget {
                       SizedBox(
                         height: 100,
                         child:  Image.asset(
-                          "assets/crepa.png",
+                          image,
                         ),
                       ) 
                       

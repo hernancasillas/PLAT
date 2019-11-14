@@ -20,7 +20,7 @@ class Producto1 extends StatelessWidget {
     final opinionButton = RaisedGradientButton(
       gradient: LinearGradient(
         colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
-       ),
+      ),
       onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(
         builder: (BuildContext context) => Opinion()));
@@ -34,14 +34,14 @@ final comprarButton = RaisedGradientButton(
         gradient: LinearGradient(
           colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
         ),
-         onPressed: () {
-           Navigator.of(context).push(MaterialPageRoute(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
             builder: (BuildContext context) => Carrito()));
           },
           child: Text("Comprar",
             textAlign: TextAlign.center,
             style: style.copyWith(
-               color: Colors.white, fontWeight: FontWeight.bold)),
+              color: Colors.white, fontWeight: FontWeight.bold)),
 
         );
 
@@ -59,7 +59,7 @@ final comprarButton = RaisedGradientButton(
             IconButton(
               icon: Icon(Icons.home),
               onPressed: () {
-                 Navigator.of(context).push(MaterialPageRoute(
+                Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => MainScreen()));
               },
             ),
@@ -67,8 +67,8 @@ final comprarButton = RaisedGradientButton(
       ),
         drawer: AppDrawer(),
         body: Center(
-           child: ListView(children: <Widget>[
-             Container(
+          child: ListView(children: <Widget>[
+            Container(
               color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(36.0),
@@ -86,8 +86,8 @@ final comprarButton = RaisedGradientButton(
                                 ),
                             ),
                       onTap: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                           builder: (BuildContext context) => HeroScreen(image: image)));
+                          Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => HeroScreen(image: image)));
             
                       }
                     ,),

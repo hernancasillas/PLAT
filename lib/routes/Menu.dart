@@ -23,7 +23,7 @@ class Menu extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.home),
               onPressed: () {
-                 Navigator.of(context).push(MaterialPageRoute(
+                Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => MainScreen()));
               },
             ),
@@ -57,18 +57,18 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/albondigas.png', titulo: 'Meatballs')));
                         },
                       ),
         
-                     ),
+                    ),
                       
                     ],
                   ),
                 ),
                 ),
                 SizedBox(height:5),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.all(30),
                 child: Container(
                   height:100,
@@ -91,7 +91,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cereal.png', titulo: 'Cereal')));
                         },
                     ),
         
@@ -125,7 +125,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/arroz_frito.png', titulo:'Fried Rice')));
                         },
                     ),
         
@@ -159,7 +159,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cheesecake.png' ,titulo:'Cheesecake')));
                         },
                     ),
         
@@ -168,7 +168,7 @@ class Menu extends StatelessWidget {
                   ),
                 ),
                 ),
-                 Padding(
+              Padding(
                 padding: const EdgeInsets.all(30),
                 child: Container(
                   height:100,
@@ -191,7 +191,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enchiladas.png', titulo:'Enchiladas')));
                         },
                     ),
         
@@ -223,7 +223,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enfrijoladas.png', titulo: 'Enfrijoladas')));
                         },
                     ),
         
@@ -241,26 +241,34 @@ class Menu extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text("Sunday 11th:\n\nLentils",style:TextStyle(fontSize: 20),),
-                      Container(
-                      height: 100,
-                      width: 200,
-                      child: GestureDetector(
-                        child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        height: 150,
-                        child: Image.asset("assets/lentejas.png", fit: BoxFit.contain,)
-                        //Text('text $i', style: TextStyle(fontSize: 16.0),)
+                      Column(
+                        children: <Widget>[
+                        Text("Sunday 11th:\n\nLentils",style:TextStyle(fontSize: 20),),
+                        
+                        ],
                         ),
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe()));
-                        },
-                    ),
-        
-                  ),
-                    ],
+                      Column(
+                        children:<Widget>[
+                        Container(
+                          height: 100,
+                          width: 200,
+                          child: GestureDetector(
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              //margin: EdgeInsets.symmetric(horizontal: 5.0),
+                              height: 150,
+                              child: Image.asset("assets/lentejas.png", fit: BoxFit.contain,)
+                              //Text('text $i', style: TextStyle(fontSize: 16.0),)
+                            ),
+                            onTap: (){
+                              Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => ViewRecipe(image: 'assets/lentejas.png', titulo: 'Lentils')));
+                            },
+                          ),
+                        ),
+                        ],
+                      ),
+                      ],
                   ),
                 ),
                 ),
