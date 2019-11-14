@@ -10,7 +10,7 @@ class ViewRecipe extends StatelessWidget {
   final String image;
   final String titulo;
   
-  ViewRecipe({Key key, @required this.image, this.titulo}) : super(key: key);
+  ViewRecipe({Key key, @required this.image, @required this.titulo}) : super(key: key);
 
 
   @override
@@ -44,7 +44,7 @@ class ViewRecipe extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 20, 15, 0),
                 child:              
-                  Text(titulo, style:TextStyle(fontSize: 25),),
+                  Text('Hola', style:TextStyle(fontSize: 25),),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(95,5,0,0),

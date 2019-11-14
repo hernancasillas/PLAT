@@ -91,7 +91,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cereal.png' titulo: 'Cereal')));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cereal.png', titulo: 'Cereal')));
                         },
                     ),
         
@@ -125,7 +125,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/arroz_frito.png' titulo:'Fried Rice')));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/arroz_frito.png', titulo:'Fried Rice')));
                         },
                     ),
         
@@ -159,7 +159,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cheesecake.png' titulo:'Cheesecake')));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cheesecake.png' ,titulo:'Cheesecake')));
                         },
                     ),
         
@@ -191,7 +191,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enchiladas.png' titulo:'Enchiladas')));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enchiladas.png', titulo:'Enchiladas')));
                         },
                     ),
         
@@ -223,7 +223,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enfrijoladas.png' titulo: 'Enfrijoladas')));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enfrijoladas.png', titulo: 'Enfrijoladas')));
                         },
                     ),
         
@@ -242,12 +242,13 @@ class Menu extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Column(
-                        chidren: <Widget>[
+                        children: <Widget>[
                         Text("Sunday 11th:\n\nLentils",style:TextStyle(fontSize: 20),),
                         
                         ],
                         ),
                       Column(
+                        children:<Widget>[
                         Container(
                           height: 100,
                           width: 200,
@@ -261,10 +262,11 @@ class Menu extends StatelessWidget {
                             ),
                             onTap: (){
                               Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => ViewRecipe(image: 'assets/lentejas.png' titulo: 'Lentils')));
+                              builder: (BuildContext context) => ViewRecipe(image: 'assets/lentejas.png', titulo: 'Lentils')));
                             },
                           ),
                         ),
+                        ],
                       ),
                       ],
                   ),
