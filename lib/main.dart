@@ -8,6 +8,7 @@ import 'package:examen_flutter/routes/ViewRecipe.dart';
 import 'package:examen_flutter/routes/AddRecipe.dart';
 import 'package:examen_flutter/models/user.dart';
 import 'package:examen_flutter/services/auth.dart';
+import 'package:examen_flutter/widgets/loading.dart';
 import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
@@ -288,6 +289,7 @@ class _LoginState extends State<LoginScreen> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   final username = TextEditingController();
   final password = TextEditingController();
@@ -334,9 +336,15 @@ class _LoginState extends State<LoginScreen> {
            onPressed: () async {
               if(_formKey.currentState.validate())
               {
+                setState(() => {
+                  loading = true
+                });
                 dynamic result = await _auth.signInWithEmailAndPassword(email, passwd);
                 if(result == null){
-                  setState(() => error = 'Email or password incorrect!');
+                  setState((){
+                    error = 'Email or password incorrect!';
+                    loading = false;
+                  });
                 }
               }
             },
@@ -368,7 +376,7 @@ class _LoginState extends State<LoginScreen> {
             color: Colors.white, fontWeight: FontWeight.bold)
           ),          
         );
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       appBar: GradientAppBar(
         title: Text('Sign in to PLAT'),
         gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */

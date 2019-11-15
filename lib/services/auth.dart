@@ -1,4 +1,5 @@
 import 'package:examen_flutter/models/user.dart';
+import 'package:examen_flutter/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService{
@@ -42,10 +43,14 @@ class AuthService{
   }
 
   //Register with email and password
-  Future registerWithEmailAndPassword(String email, String password) async{
+  Future registerWithEmailAndPassword(String email, String password, String username) async{
     try{
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = result.user;
+
+      //Create a new document for the user with the uid
+      await DatabaseService(uid: user.uid).updateUserData('This is my name', email, username);
+
       return _userFromFirebaseUser(user);
     }catch(e)
     {

@@ -1,5 +1,6 @@
 import 'package:examen_flutter/main.dart';
 import 'package:examen_flutter/services/auth.dart';
+import 'package:examen_flutter/widgets/loading.dart';
 import 'package:examen_flutter/widgets/raisedgradbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
@@ -24,6 +25,7 @@ class _RegisterState extends State<Register> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   String email = '';
   String passwd = '';
@@ -79,9 +81,15 @@ class _RegisterState extends State<Register> {
             onPressed: () async {
               if(_formKey.currentState.validate())
               {
-                dynamic result = await _auth.registerWithEmailAndPassword(email, passwd);
+                setState(() {
+                  loading = true;
+                });
+                dynamic result = await _auth.registerWithEmailAndPassword(email, passwd, username);
                 if(result == null){
-                  setState(() => error = 'Please supply a valid email');
+                  setState((){
+                    loading = false;
+                    error = 'Please supply a valid email';
+                    });
                 }
               }
             },
@@ -93,7 +101,7 @@ class _RegisterState extends State<Register> {
           
         );
     
-    return new Scaffold(
+    return loading ? Loading() : new Scaffold(
         appBar: GradientAppBar(
         title: Text('Sign up to PLAT'),
         gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
