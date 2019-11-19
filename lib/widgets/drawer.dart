@@ -6,6 +6,7 @@ import 'package:examen_flutter/routes/GoPremium.dart';
 import 'package:examen_flutter/routes/about.dart';
 import 'package:examen_flutter/routes/PrivacyAgreement.dart';
 import 'package:examen_flutter/services/auth.dart';
+import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -25,19 +26,14 @@ class AppDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           _createHeader(context),
-          _createDrawerItem(icon: Icons.account_circle,text: 'Following', 
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => Perfil()));
-            },),
-          _createDrawerItem(icon: Icons.settings, text: 'Settings', 
+         
+          /* _createDrawerItem(icon: Icons.settings, text: 'Settings', 
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => Plantilla()));
             },
-          ),
+          ), */
           Divider(),
           _createDrawerItem(icon: Icons.info_outline, text: 'About Us',
             onTap: () {
@@ -71,6 +67,8 @@ class AppDrawer extends StatelessWidget {
             onTap: () async {
                 Navigator.of(context).pop();
                 await _auth.signOut();
+                Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => Wrapper()));
               },
             ),
             SizedBox(height: 100,),

@@ -31,7 +31,7 @@ class Perfil extends StatelessWidget {
                 icon: Icon(Icons.home),
                 onPressed: () {
                    Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => MainScreen()));
+                                builder: (BuildContext context) => EditProfile()));
                 },
               ),
             ],

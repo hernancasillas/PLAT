@@ -1,5 +1,6 @@
 import 'package:examen_flutter/main.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
+import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -30,7 +31,7 @@ class AddRecipe extends StatelessWidget {
               icon: Icon(Icons.home),
               onPressed: () {
                  Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => MainScreen()));
+                  builder: (BuildContext context) => Wrapper()));
               },
             ),
           ],
