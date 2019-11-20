@@ -78,11 +78,6 @@ class ViewRecipe extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children:<Widget>[
                         Container(
-                          child :
-                            Text("last eaten: March 5th, 2019"),
-                          
-                        ),
-                        Container(
                           child:
                           SizedBox(
                             height: 100,
