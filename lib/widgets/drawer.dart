@@ -1,4 +1,5 @@
 
+import 'package:examen_flutter/models/user.dart';
 import 'package:examen_flutter/routes/Perfil.dart';
 import 'package:examen_flutter/routes/Plantilla.dart';
 import 'package:examen_flutter/routes/FAQ.dart';
@@ -11,6 +12,10 @@ import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
   final AuthService _auth = AuthService();
+  final user;
+
+  AppDrawer({Key key, @required this.user}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -25,7 +30,7 @@ class AppDrawer extends StatelessWidget {
           child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          _createHeader(context),
+          _createHeader(context, user),
          
           /* _createDrawerItem(icon: Icons.settings, text: 'Settings', 
             onTap: () {
@@ -84,7 +89,7 @@ class AppDrawer extends StatelessWidget {
     
 }
 
-Widget _createHeader(BuildContext context) {
+Widget _createHeader(BuildContext context, User user) {
         return  
         Center(
               child: Column(
@@ -101,11 +106,18 @@ Widget _createHeader(BuildContext context) {
                     ),
                     onTap:() {
                               Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => Perfil()));
+                              builder: (BuildContext context) => Perfil(user: user)));
                             },
                   ),
                   SizedBox(height: 20,),
-                  Text('Username', style: TextStyle(fontSize: 20, color: Colors.white)),
+                  GestureDetector(child: 
+                    Text("Username", style: TextStyle(fontSize: 20, color: Colors.white)),
+                    onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => Perfil(user: user)));
+                            },
+                  ),
+                  
                   SizedBox(height: 20,)
                 ], 
             ),

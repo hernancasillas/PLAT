@@ -14,6 +14,9 @@ import 'models/myUser.dart';
 
 class Home extends StatelessWidget  {
    final style =  new TextStyle(fontFamily: 'Montserrat');
+   final user;
+
+   Home({Key key, @required this.user}) : super(key: key);
    
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,7 @@ class Home extends StatelessWidget  {
               ),
             ],
         ),
-        drawer: AppDrawer(),
+        drawer: AppDrawer(user: user),
         body: 
         
         
@@ -140,7 +143,7 @@ class Home extends StatelessWidget  {
                               ),
                               onTap: (){
                                 Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => Menu()));
+                                builder: (BuildContext context) => Menu(user: user)));
                               },
                             ),
                   

@@ -32,7 +32,17 @@ class EditProfile extends StatelessWidget {
               hintText: "New email",
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-          controller: password,
+          
+        );
+    final nameField = TextField(
+          obscureText: true,
+          style: style,
+          decoration: InputDecoration(
+              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              hintText: "New full name",
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+          
         );
         final savebutton = RaisedGradientButton(
           gradient: LinearGradient(
@@ -104,6 +114,8 @@ class EditProfile extends StatelessWidget {
               namefield,
               SizedBox(height: 25.0),
               emailField,
+              SizedBox(height: 25.0),
+              nameField,
               SizedBox(height: 35.0,),
               savebutton
             ],

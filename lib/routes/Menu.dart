@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class Menu extends StatelessWidget {
-  
-
+  final user;
+  Menu({Key key, @required this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -30,7 +30,7 @@ class Menu extends StatelessWidget {
             ),
           ],
       ),
-        drawer: AppDrawer(),
+        drawer: AppDrawer(user: user),
         body: Center(
           child:ListView(
             children:<Widget>[
@@ -58,7 +58,7 @@ class Menu extends StatelessWidget {
                         ),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/albondigas.png', titulo: 'Meatballs')));
+                          builder: (BuildContext context) => ViewRecipe(image: 'assets/albondigas.png', titulo: 'Meatballs', user: user)));
                         },
                       ),
         
