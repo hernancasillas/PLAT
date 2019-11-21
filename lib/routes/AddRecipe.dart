@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:examen_flutter/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
@@ -7,17 +9,21 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:examen_flutter/widgets/raisedgradbutton.dart';
 
-var ingredients = new List<String>();
 
 
-class AddRecipe extends StatelessWidget {
+class AddRecipe extends StatefulWidget {
   static final List arr = ["1", "2", "3", "4", "5"];
   static final List units = ["kg", "gr", "cup", "tablespoon","teaspoon", "pinch", "package", "can"];
-  //static final List ingredients = ["eggs", "milk", "flour", "sauce"];
-  
+
+
+  @override
+  _AddRecipeState createState() => _AddRecipeState();
+}
+
+class _AddRecipeState extends State<AddRecipe> {
   final recipeName = TextEditingController();
   final recipeSteps = TextEditingController();
-
+  var ingredients = new List<String>();
   @override
   Widget build(BuildContext context) {
     TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 15.0);
@@ -85,19 +91,36 @@ class AddRecipe extends StatelessWidget {
                       
                         new Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: SettingsWidget(foo: arr),
+                          child: SettingsWidget(foo: AddRecipe.arr),
                         ),
                       
                       new Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: SettingsWidget(foo: units),
+                          child: SettingsWidget(foo: AddRecipe.units),
                         ),
                       
                       Text('of'),
-                      getIngs(snapshot,context),
+                      getIngs(snapshot,context, ingredients),
                       
                     ],
                   ),
+                  RaisedGradientButton(
+                      width: 50,
+                      
+                      gradient: LinearGradient(
+                        colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
+                      ),
+                      onPressed: () {
+                            /* Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => Perfil())); */
+                        },
+                      child: Icon(
+                        Icons.plus_one,
+                        color: Colors.white,
+                        size: 25.0,
+                      )          
+                    ),
+                    SizedBox(height: 20,),
                 Text('Ingredients'),
                 Container(
                   margin: const EdgeInsets.all(20),
@@ -194,18 +217,20 @@ class AddRecipe extends StatelessWidget {
 }
 
 
-getIngs(AsyncSnapshot<QuerySnapshot> snapshot, context)
+getIngs(AsyncSnapshot<QuerySnapshot> snapshot, context, ingredients)
 {
+    log('INGREDIENTS: ' + snapshot.data.documents.toString());
     for(var ing in snapshot.data.documents)
     {
       ingredients.add(ing['name']);
     }
     ingredients.add("test");
-    ingredients.sort((a,b) => a.compareTo(b));
+    //ingredients.sort((a,b) => a.compareTo(b));
+    
     return new Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: SettingsWidget(foo: ingredients),
-      );
+    );
 }
   
 

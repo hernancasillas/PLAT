@@ -56,7 +56,7 @@ class Home extends StatelessWidget  {
                   stream: Firestore.instance.collection("recipes").document(user.uid).collection(user.uid).snapshots(),
                   builder: (context, snapshot) {
 
-                    log(snapshot.data.documents.toString());
+                    //log(snapshot.data.documents.toString());
                     var doc = snapshot.data.documents;
                     return Center(
             

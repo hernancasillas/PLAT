@@ -18,6 +18,7 @@ class DatabaseService{
       'username': username
     });
   }
+
   Future updateUserRecipe(String name, String steps) 
   async {
     return await myRecipeCollection.document(uid).collection(uid).document('1')
@@ -26,6 +27,17 @@ class DatabaseService{
       'steps': 'Default Steps',
       'rating': '3',
       'image': 'assets/cereal.png',
+    });
+  }
+
+  Future updateRecipe(String name, String steps, String image, String rating) 
+  async {
+    return await myRecipeCollection.document(uid).collection(uid).document('1')
+    .setData({
+      'name': name,
+      'steps': steps,
+      'rating': rating,
+      'image': image,
     });
   }
 
