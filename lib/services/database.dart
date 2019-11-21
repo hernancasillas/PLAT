@@ -20,9 +20,12 @@ class DatabaseService{
   }
   Future updateUserRecipe(String name, String steps) 
   async {
-    return await myRecipeCollection.document(uid).setData({
-      'name': name,
-      'steps': steps,
+    return await myRecipeCollection.document(uid).collection(uid).document('1')
+    .setData({
+      'name': 'Default Recipe',
+      'steps': 'Default Steps',
+      'rating': '3',
+      'image': 'assets/cereal.png',
     });
   }
 
