@@ -82,6 +82,7 @@ flutter:
     - tallarines.png
     - verduras.png
     - zanahorias.png
+    - logo_plus.png
 
   fonts:
     - family: Montserrat
