@@ -30,10 +30,22 @@ class GoPremium extends StatelessWidget {
           ],
       ),
         drawer: AppDrawer(),
+
+
         body: Center(
           child:Column(
             children:<Widget>[
-              Text("Plantilla"),
+              Row(children: <Widget>[
+                Container(color: Colors.grey,height: 50,width: 50,margin: const EdgeInsets.all(10.0)),
+                Container(color: Color(0x6E6B6B))
+
+
+              ],),
+              Row(children: <Widget>[
+
+
+              ],),
+              Text("HOLI"),
             ],
           ),
           )
