@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:examen_flutter/routes/AddRecipe.dart';
 import 'package:examen_flutter/routes/GoPremium.dart';
@@ -50,156 +52,170 @@ class Home extends StatelessWidget  {
         body: 
         
         
-                Center(
+                StreamBuilder(
+                  stream: Firestore.instance.collection("recipes").document(user.uid).collection(user.uid).snapshots(),
+                  builder: (context, snapshot) {
+
+                    log(snapshot.data.documents.toString());
+                    var doc = snapshot.data.documents;
+                    return Center(
             
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    
-                    SizedBox(height: 20,),
-                    Text('My Recipes', style: TextStyle(fontSize: 25)),
-                    CarouselSlider(
-                    height: 150.0,
-                    
-                    items: [1,2,3,4,5].map((i) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return GestureDetector(
-                            child: SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                            height: 150,
-                            child: Image.asset("assets/crepa.png", fit: BoxFit.contain,)
-                            //Text('text $i', style: TextStyle(fontSize: 16.0),)
-                            ),
-                            onTap: (){
-                              Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => AddRecipe()));
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        
+                        SizedBox(height: 20,),
+                        Text('My Recipes', style: TextStyle(fontSize: 25)),
+                        CarouselSlider(
+                        height: 150.0,
+                        
+                        items: doc.map<Widget>((recipe) {
+                          return Builder(
+                            builder: (BuildContext context) {
+                              return GestureDetector(
+                                child: SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                //margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                height: 150,
+                                child: Image.asset( recipe['image'], fit: BoxFit.contain,)
+                                //Text('text $i', style: TextStyle(fontSize: 16.0),)
+                                ),
+                                onTap: (){
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) => ViewRecipe(
+                                    user: user, 
+                                    image: recipe['image'], 
+                                    titulo: recipe['name'], 
+                                    rating: recipe['rating'],
+                                    steps: recipe['steps']
+                                  )));
+                                },
+                              );
                             },
                           );
-                        },
-                      );
-                    }).toList(),
-                    
-                  ),
+                        }).toList(),
+                        
+                      ),
               
-                /* SizedBox(
+                    /* SizedBox(
               height: 160.0,
               child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  InkWell(
-                    child: SizedBox(
-                      width: 160.0,
-                      child: Image.asset("assets/sneakers.png", fit: BoxFit.contain),
-                      
-                    ),
-                    onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => Producto1(image: 'assets/sneakers.png')));} ,
-                  ),
-                  InkWell(
-                    child: SizedBox(
-                      width: 160.0,
-                      child: Image.asset("assets/hoodie.png", fit: BoxFit.contain),
-                      
-                    ),
-                    onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => Producto1(image: 'assets/hoodie.png')));} ,
-                  ),
-                 InkWell(
-                    child: SizedBox(
-                      width: 160.0,
-                      child: Image.asset("assets/supreme.png", fit: BoxFit.contain),
-                      
-                    ),
-                    onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => Producto1(image: 'assets/supreme.png')));} ,
-                  ),
-                  InkWell(
-                    child: SizedBox(
-                      width: 160.0,
-                      child: Image.asset("assets/tee.png", fit: BoxFit.contain),
-                      
-                    ),
-                    onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => Producto1(image: 'assets/tee.png')));} ,
-                  ),
-                ],
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      InkWell(
+                        child: SizedBox(
+                          width: 160.0,
+                          child: Image.asset("assets/sneakers.png", fit: BoxFit.contain),
+                          
+                        ),
+                        onTap: () { Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => Producto1(image: 'assets/sneakers.png')));} ,
+                      ),
+                      InkWell(
+                        child: SizedBox(
+                          width: 160.0,
+                          child: Image.asset("assets/hoodie.png", fit: BoxFit.contain),
+                          
+                        ),
+                        onTap: () { Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => Producto1(image: 'assets/hoodie.png')));} ,
+                      ),
+                     InkWell(
+                        child: SizedBox(
+                          width: 160.0,
+                          child: Image.asset("assets/supreme.png", fit: BoxFit.contain),
+                          
+                        ),
+                        onTap: () { Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => Producto1(image: 'assets/supreme.png')));} ,
+                      ),
+                      InkWell(
+                        child: SizedBox(
+                          width: 160.0,
+                          child: Image.asset("assets/tee.png", fit: BoxFit.contain),
+                          
+                        ),
+                        onTap: () { Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => Producto1(image: 'assets/tee.png')));} ,
+                      ),
+                    ],
               ),
             ), */
-                  SizedBox(height: 20,),
-                  Divider(),
-                  Text('On the menu', style: TextStyle(fontSize: 25)),
-                  Container(
-                    height: 100,
-                    width: 100,
-                    child: GestureDetector(
-                              child: SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                              height: 150,
-                              child: Image.asset("assets/crepa.png", fit: BoxFit.contain,)
-                              //Text('text $i', style: TextStyle(fontSize: 16.0),)
-                              ),
-                              onTap: (){
+                      SizedBox(height: 20,),
+                      Divider(),
+                      Text('On the menu', style: TextStyle(fontSize: 25)),
+                      Container(
+                        height: 100,
+                        width: 100,
+                        child: GestureDetector(
+                                  child: SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  //margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                  height: 150,
+                                  child: Image.asset("assets/crepa.png", fit: BoxFit.contain,)
+                                  //Text('text $i', style: TextStyle(fontSize: 16.0),)
+                                  ),
+                                  onTap: (){
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (BuildContext context) => Menu(user: user)));
+                                  },
+                                ),
+                      
+                      ),
+                      SizedBox(height: 20,),
+                      Divider(),
+                      Text('Shopping List', style: TextStyle(fontSize: 25)),
+                      Expanded(
+                        child: ListView(
+                        children: <Widget>[
+                          SizedBox(height: 20,),
+                          Card(
+                            child: ListTile(
+                              leading: Icon(Icons.shopping_basket, size: 50),
+                              title: Text('Eggs', style: TextStyle(fontSize: 30)),
+                              subtitle: Text('Amount: 12', style: TextStyle(fontSize: 20)),
+                              trailing: Icon(Icons.more_vert),
+                              onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => Menu(user: user)));
-                              },
+                                builder: (BuildContext context) => GoPremium()));
+                              }
                             ),
-                  
-                  ),
-                  SizedBox(height: 20,),
-                  Divider(),
-                  Text('Shopping List', style: TextStyle(fontSize: 25)),
-                  Expanded(
-                    child: ListView(
-                    children: <Widget>[
-                      SizedBox(height: 20,),
-                      Card(
-                        child: ListTile(
-                          leading: Icon(Icons.shopping_basket, size: 50),
-                          title: Text('Eggs', style: TextStyle(fontSize: 30)),
-                          subtitle: Text('Amount: 12', style: TextStyle(fontSize: 20)),
-                          trailing: Icon(Icons.more_vert),
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => GoPremium()));
-                          }
-                        ),
+                          ),
+                          SizedBox(height: 20,),
+                          Card(
+                            child: ListTile(
+                              leading: Icon(Icons.shopping_basket, size: 50),
+                              title: Text('Cheese', style: TextStyle(fontSize: 30)),
+                              subtitle: Text('Amount: 1', style: TextStyle(fontSize: 20)),
+                              trailing: Icon(Icons.more_vert),
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => GoPremium()));
+                              }
+                            ),
+                          ),
+                          SizedBox(height: 20,),
+                          Card(
+                            child: ListTile(
+                              leading: Icon(Icons.shopping_basket, size: 50),
+                              title: Text('Tortilla', style: TextStyle(fontSize: 30)),
+                              subtitle: Text('Amount: 1 kg', style: TextStyle(fontSize: 20)),
+                              trailing: Icon(Icons.more_vert),
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => GoPremium()));
+                              }
+                            ),
+                          ),
+                          SizedBox(height: 20,),
+                        ],
                       ),
-                      SizedBox(height: 20,),
-                      Card(
-                        child: ListTile(
-                          leading: Icon(Icons.shopping_basket, size: 50),
-                          title: Text('Cheese', style: TextStyle(fontSize: 30)),
-                          subtitle: Text('Amount: 1', style: TextStyle(fontSize: 20)),
-                          trailing: Icon(Icons.more_vert),
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => GoPremium()));
-                          }
-                        ),
                       ),
-                      SizedBox(height: 20,),
-                      Card(
-                        child: ListTile(
-                          leading: Icon(Icons.shopping_basket, size: 50),
-                          title: Text('Tortilla', style: TextStyle(fontSize: 30)),
-                          subtitle: Text('Amount: 1 kg', style: TextStyle(fontSize: 20)),
-                          trailing: Icon(Icons.more_vert),
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => GoPremium()));
-                          }
-                        ),
-                      ),
-                      SizedBox(height: 20,),
-                    ],
-                  ),
-                  ),
-                ]
+                    ]
               ),
-            ) 
+            );
+                  }
+                ) 
           
       ),
     );

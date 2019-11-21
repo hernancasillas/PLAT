@@ -12,8 +12,10 @@ class ViewRecipe extends StatelessWidget {
   final String image;
   final String titulo;
   final user;
+  final String rating;
+  final String steps;
   
-  ViewRecipe({Key key, @required this.user, @required this.image, @required this.titulo}) : super(key: key);
+  ViewRecipe({Key key, @required this.user, @required this.image, @required this.titulo, @required this.rating, @required this.steps}) : super(key: key);
 
 
   @override
@@ -40,7 +42,7 @@ class ViewRecipe extends StatelessWidget {
       ),
         drawer: AppDrawer(user: user),
         body:StreamBuilder( 
-          stream: Firestore.instance.collection('recipes').document(user.uid).snapshots(),
+          stream: Firestore.instance.collection('recipes').document(user.uid).collection(user.uid).document('1').snapshots(),
           builder: (context, snapshot) {
 
             if(!snapshot.hasData)
@@ -57,13 +59,13 @@ class ViewRecipe extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(100, 20, 15, 0),
                     child:              
-                      Text(recipeDocument['name'], style:TextStyle(fontSize: 25),),
+                      Text(titulo, style:TextStyle(fontSize: 25),),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(95,5,0,0),
                     child:
                   FlutterRatingBar(
-                      initialRating: 5,
+                      initialRating: double.parse(rating),
                       fillColor: Colors.amber,
                       borderColor: Colors.amber.withAlpha(50),
                       allowHalfRating: true,
@@ -130,7 +132,7 @@ class ViewRecipe extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(20, 5, 15, 0),
                     child:
                     //Text("1. In a large mixing bowl, create a well with flour then add eggs, slowly whisking them into flour. Add sugar and salt and stir until combined. Gradually add the milk, whisking to combine.\n Let batter stand at room temperature until bubbly on top, 15 to 20 minutes.\n\n2.In a small skillet over medium heat, melt butter. About 1/4 cup at a time, drop batter evenly onto pan, swirling it to evenly coat.\n\n3. Wait for 2 minutes, then flip and cook 1 minute more; repeat with remaining batter. Serve crêpes warm with fresh fruit and powdered sugar.",style:TextStyle(fontSize: 16), textAlign: TextAlign.left,),
-                    Text(recipeDocument['steps'],style:TextStyle(fontSize: 16), textAlign: TextAlign.left,),
+                    Text(steps,style:TextStyle(fontSize: 16), textAlign: TextAlign.left,),
                   ),
                   SizedBox(height: 50.0),
                 ],

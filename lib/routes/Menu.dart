@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:examen_flutter/main.dart';
 import 'package:examen_flutter/routes/ViewRecipe.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
@@ -10,297 +13,92 @@ class Menu extends StatelessWidget {
   Menu({Key key, @required this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: GradientAppBar(
-        title: Text('This Week´s Menu'),
-        gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
-                  LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [const Color(0xFF064B71), const Color(0xFF2692C2)],
-              ),
-              actions: <Widget>[
-            // action button
-            IconButton(
-              icon: Icon(Icons.home),
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Wrapper()));
-              },
-            ),
-          ],
-      ),
-        drawer: AppDrawer(user: user),
-        body: Center(
-          child:ListView(
-            children:<Widget>[
-              SizedBox(height: 20,),
-              Padding(
-                padding: const EdgeInsets.all(30),
-                child: Container(
-                  height:100,
-                  width: 200,
-                  child:
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text("Monday 4th:\n\nMeatballs",style:TextStyle(fontSize: 20),),
-                      Container(
-                      height: 100,
-                      width: 200,
-                      child: GestureDetector(
-                        child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        height: 150,
-                        child: Image.asset("assets/albondigas.png", fit: BoxFit.contain,)
-                        //Text('text $i', style: TextStyle(fontSize: 16.0),)
-                        ),
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/albondigas.png', titulo: 'Meatballs', user: user)));
-                        },
-                      ),
+    return StreamBuilder(
+      stream: Firestore.instance.collection("recipes").document(user.uid).collection(user.uid).snapshots(),
+      builder: (context, snapshot) {
+        if(!snapshot.hasData)
+        {
+          return Text("No data...");
+        }
         
-                    ),
-                      
-                    ],
-                  ),
-                ),
-                ),
-                SizedBox(height:5),
-              Padding(
-                padding: const EdgeInsets.all(30),
-                child: Container(
-                  height:100,
-                  width: 200,
-                  child:
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text("Tuesday 5th:\n\nCereal",style:TextStyle(fontSize: 20),),
-                      Container(
-                      height: 100,
-                      width: 200,
-                      child: GestureDetector(
-                        child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        height: 150,
-                        child: Image.asset("assets/cereal.png", fit: BoxFit.contain,)
-                        //Text('text $i', style: TextStyle(fontSize: 16.0),)
-                        ),
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cereal.png', titulo: 'Cereal')));
-                        },
-                    ),
         
-                  ),
-                  
-                    ],
-                  ),
-                ),
-                ),
-                  SizedBox(height:5),
-              Padding(
-                padding: const EdgeInsets.all(30),
-                child: Container(
-                  height:100,
-                  width: 200,
-                  child:
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text("Wednesday 6th:\n\nFried Rice",style:TextStyle(fontSize: 20),),
-                      Container(
-                      height: 100,
-                      width: 150,
-                      child: GestureDetector(
-                        child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        height: 150,
-                        child: Image.asset("assets/arroz_frito.png", fit: BoxFit.contain,)
-                        //Text('text $i', style: TextStyle(fontSize: 16.0),)
-                        ),
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/arroz_frito.png', titulo:'Fried Rice')));
-                        },
-                    ),
         
+        return new Scaffold(
+            appBar: GradientAppBar(
+            title: Text('This Week´s Menu'),
+            gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
+                      LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [const Color(0xFF064B71), const Color(0xFF2692C2)],
                   ),
-                      
-                    ],
-                  ),
+                  actions: <Widget>[
+                // action button
+                IconButton(
+                  icon: Icon(Icons.home),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => Wrapper()));
+                  },
                 ),
-                ),
-                  SizedBox(height:5),
-              Padding(
-                padding: const EdgeInsets.all(30),
-                child: Container(
-                  height:100,
-                  width: 200,
-                  child:
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text("Thursday 7th:\n\nCheesecake",style:TextStyle(fontSize: 20),),
-                      Container(
-                      height: 100,
-                      width: 200,
-                      child: GestureDetector(
-                        child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        height: 150,
-                        child: Image.asset("assets/cheesecake.png", fit: BoxFit.contain,)
-                        //Text('text $i', style: TextStyle(fontSize: 16.0),)
-                        ),
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/cheesecake.png' ,titulo:'Cheesecake')));
-                        },
-                    ),
-        
-                  ),
-                    ],
-                  ),
-                ),
-                ),
-              Padding(
-                padding: const EdgeInsets.all(30),
-                child: Container(
-                  height:100,
-                  width: 200,
-                  child:
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text("Friday 8th:\n\nEnchiladas",style:TextStyle(fontSize: 20),),
-                      Container(
-                      height: 100,
-                      width: 200,
-                      child: GestureDetector(
-                        child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        height: 150,
-                        child: Image.asset("assets/enchiladas.png", fit: BoxFit.contain,)
-                        //Text('text $i', style: TextStyle(fontSize: 16.0),)
-                        ),
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ViewRecipe(image: 'assets/enchiladas.png', titulo:'Enchiladas')));
-                        },
-                    ),
-        
-                  ),
-                    ],
-                  ),
-                ),
-                ),
-                Padding(
-                padding: const EdgeInsets.all(30),
-                child: Container(
-                  height:100,
-                  width: 200,
-                  child:
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                        Center(
-                          child:
-                        Text("Saturday 10th:\n\nEnfrijoladas",style:TextStyle(fontSize: 20),),
-                        
-                        ),
-                        ],
-                        
-                        ),
-                        Column(
-                        
-                        children:<Widget>[
-                          Center(
-                            child:
-                            Container(
-                            height: 100,
-                            width: 200,
-                            child: GestureDetector(
-                              child: SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                              height: 150,
-                              child: Image.asset("assets/enfrijoladas.png", fit: BoxFit.contain,)
-                              //Text('text $i', style: TextStyle(fontSize: 16.0),)
-                              ),
-                              onTap: (){
-                                Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => ViewRecipe(image: 'assets/enfrijoladas.png', titulo: 'Enfrijoladas')));
-                              },
-                          ),
-                          ),
-                        ),
-                          ],
-                  ),
-                    ],
-                  ),
-                ),
-                ),
-                Padding(
-                padding: const EdgeInsets.all(30),
-                child: Container(
-                  height:100,
-                  width: 200,
-                  child:
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                        Center(
-                          child:
-                        Text("Sunday 11th:\n\nLentils",style:TextStyle(fontSize: 20),),
-                        
-                        ),
-                        ],
-                        
-                        ),
-                      Column(
-                        
-                        children:<Widget>[
-                          Center(
-                            child:
-                            Container(
-                              height: 100,
-                              width: 200,
-                              child: GestureDetector(
-                                child: SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                                  height: 150,
-                                  child: Image.asset("assets/lentejas.png", fit: BoxFit.contain,)
-                                  //Text('text $i', style: TextStyle(fontSize: 16.0),)
-                                ),
-                                onTap: (){
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) => ViewRecipe(image: 'assets/lentejas.png', titulo: 'Lentils')));
-                                },
-                              ),
-
-                            ),
-                          ),
-                        ],
-                      ),
-                      ],
-                  ),
-                ),
-                ),
-            ],
+              ],
           ),
-          )
-      );
+            drawer: AppDrawer(user: user),
+            body: Center(
+              child:ListView(
+                children: getExpenseItems(snapshot, context)
+                
+              ),
+            )
+          );
+      }
+    );
   }
+
+  getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot, context) {
+    return snapshot.data.documents
+        .map((doc) => new 
+          Padding(
+                    padding: const EdgeInsets.all(30),
+                    child: Container(
+                      height:100,
+                      width: 200,
+                      child:
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text("Monday 4th:\n\n" + doc['name'],style:TextStyle(fontSize: 20),),
+                          Container(
+                          height: 100,
+                          width: 200,
+                          child: GestureDetector(
+                            child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            //margin: EdgeInsets.symmetric(horizontal: 5.0),
+                            height: 150,
+                            child: Image.asset(doc['image'], fit: BoxFit.contain,)
+                            //Text('text $i', style: TextStyle(fontSize: 16.0),)
+                            ),
+                            onTap: (){
+                              Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => ViewRecipe(
+                                image: doc['image'], 
+                                titulo: doc['name'], 
+                                user: user, rating: 
+                                doc['rating'], 
+                                steps: doc['steps'],
+                                )));
+                            },
+                          ),
+            
+                        ),
+                          
+                        ],
+                      ),
+                    ),
+                    ),
+        )
+        .toList();
+  }
+
 }
