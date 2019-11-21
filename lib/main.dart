@@ -85,7 +85,6 @@ class MyHomePage extends StatefulWidget {
       ),
       drawer: AppDrawer(),
       body: Center(
-        
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

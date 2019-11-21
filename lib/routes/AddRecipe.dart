@@ -1,4 +1,5 @@
 import 'package:examen_flutter/main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
@@ -6,15 +7,29 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:examen_flutter/widgets/raisedgradbutton.dart';
 
+var ingredients = new List<String>();
+
+
 class AddRecipe extends StatelessWidget {
-  static final List arr = ["1", "2", "3", "4"];
-  static final List units = ["kg", "gr", "lb", "oz"];
-  static final List ingredients = ["eggs", "milk", "flour", "sauce"];
+  static final List arr = ["1", "2", "3", "4", "5"];
+  static final List units = ["kg", "gr", "cup", "tablespoon","teaspoon", "pinch", "package", "can"];
+  //static final List ingredients = ["eggs", "milk", "flour", "sauce"];
+  
+  final recipeName = TextEditingController();
+  final recipeSteps = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 15.0);
-    return new Scaffold(
+    return StreamBuilder(
+      stream: Firestore.instance.collection('ingredients').snapshots(),
+      builder: (context, snapshot) {
+        if(!snapshot.hasData)
+        {
+          return Text("No data...");
+        }
+        
+        return new Scaffold(
         backgroundColor: Colors.white,
         appBar: GradientAppBar(
         title: Text('Add Recipe'),
@@ -43,7 +58,16 @@ class AddRecipe extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
                 SizedBox(height: 20,),
-                Text("Enchiladas", style: TextStyle(fontSize: 25)),
+                TextField(
+                
+                style: style,
+                decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                hintText: "Recipe Name",
+                ),
+                controller: recipeName,
+                ),
+               // Text("Enchiladas", style: TextStyle(fontSize: 25)),
                 SizedBox(height: 20,),
                 FlutterRatingBar(
                   initialRating: 5,
@@ -60,20 +84,17 @@ class AddRecipe extends StatelessWidget {
                     children: <Widget>[
                       
                         new Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.all(15.0),
                           child: SettingsWidget(foo: arr),
                         ),
                       
                       new Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.all(15.0),
                           child: SettingsWidget(foo: units),
                         ),
                       
                       Text('of'),
-                      new Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: SettingsWidget(foo: ingredients),
-                        ),
+                      getIngs(snapshot,context),
                       
                     ],
                   ),
@@ -98,6 +119,7 @@ class AddRecipe extends StatelessWidget {
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     expands: true,
+                    controller: recipeSteps,
                     ),
                   ),
                   height: 100,
@@ -165,14 +187,27 @@ class AddRecipe extends StatelessWidget {
             ],
             
           ),
-        
-      );
+        ); 
+      }
+    );
   }
-
-  
 }
 
 
+getIngs(AsyncSnapshot<QuerySnapshot> snapshot, context)
+{
+    for(var ing in snapshot.data.documents)
+    {
+      ingredients.add(ing['name']);
+    }
+    ingredients.add("test");
+    ingredients.sort((a,b) => a.compareTo(b));
+    return new Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: SettingsWidget(foo: ingredients),
+      );
+}
+  
 
 class SettingsWidget extends StatefulWidget {
   final List foo;

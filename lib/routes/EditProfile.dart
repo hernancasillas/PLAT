@@ -81,7 +81,7 @@ class EditProfile extends StatelessWidget {
       ),
         drawer: AppDrawer(),
         body: Center(
-          child: Column(
+          child: ListView(
             children: <Widget>[
               SizedBox(height: 45.0),
               SizedBox(
@@ -97,7 +97,7 @@ class EditProfile extends StatelessWidget {
                         },
                       ),
                     ),
-                    SizedBox(
+            SizedBox(
                       height: 50.0,
                       width: 50.0,
                       child: IconButton(
