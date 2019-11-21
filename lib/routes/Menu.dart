@@ -63,7 +63,7 @@ class Menu extends StatelessWidget {
     {
       if(ind<=7)
       {  
-        if(int.parse(rec['rating'])>=4)
+        if(int.parse(rec['rating'])>=3)
         {
           favs.add(rec);
         }
