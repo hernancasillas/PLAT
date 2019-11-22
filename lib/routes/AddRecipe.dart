@@ -15,6 +15,10 @@ class AddRecipe extends StatefulWidget {
   static final List arr = ["1", "2", "3", "4", "5"];
   static final List units = ["kg", "gr", "cup", "tablespoon","teaspoon", "pinch", "package", "can"];
 
+  final user;
+
+  AddRecipe({Key key, @required this.user}) : super(key: key);
+
 
   @override
   _AddRecipeState createState() => _AddRecipeState();
@@ -57,7 +61,7 @@ class _AddRecipeState extends State<AddRecipe> {
             ),
           ],
       ),
-        drawer: AppDrawer(),
+        drawer: AppDrawer(user: widget.user),
         body: ListView(shrinkWrap: true,
             children:<Widget>[
               Padding(
