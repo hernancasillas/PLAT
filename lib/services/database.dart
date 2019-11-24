@@ -22,7 +22,12 @@ class DatabaseService{
 
   Future addIngredientRecipe(String sentence, int recid)
   async{
-    return await myIngRecCollection.add({'cadena': sentence, 'recipeid': recid});
+    //return await myIngRecCollection.add({'cadena': sentence, 'recipeid': recid});
+    return await myIngRecCollection.document(uid).collection(uid).document('1')
+    .setData({
+      'cadena': sentence,
+      'recipeid': recid,
+    });
   }
 
   Future updateUserRecipe(String name, String steps) 

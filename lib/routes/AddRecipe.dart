@@ -26,13 +26,19 @@ class AddRecipe extends StatefulWidget {
 }
 
 class _AddRecipeState extends State<AddRecipe> {
+  
+  final GlobalKey<_SettingsWidgetState> _key = GlobalKey();
+  final GlobalKey<_SettingsWidgetState> _key2 = GlobalKey();
+
+
   final recipeName = TextEditingController();
   final recipeSteps = TextEditingController();
   var amount = TextEditingController();
- var unit='kg';
- var ingr='';
+  var unit='kg';
+  var ingr='';
   var ingredients = new List<String>();
   var inglist = new List<String>();
+
   @override
   Widget build(BuildContext context) {
     TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 15.0);
@@ -103,7 +109,7 @@ class _AddRecipeState extends State<AddRecipe> {
                           child:
                           Container(
                             height:25,
-                            width: 20,
+                            width: 50,
                             child: TextField(
                               controller: amount, keyboardType: TextInputType.number,)
                           ),
@@ -111,11 +117,11 @@ class _AddRecipeState extends State<AddRecipe> {
                       
                       new Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: SettingsWidget(foo: AddRecipe.units,secValue: unit ),
+                          child: SettingsWidget(key: _key, foo: AddRecipe.units,secValue: unit ),
                         ),
                       
                       Text('of'),
-                      getIngs(snapshot,context, ingredients,ingr),
+                      getIngs(snapshot,context, ingredients,ingr, _key2),
                       
                     ],
                   ),
@@ -128,13 +134,16 @@ class _AddRecipeState extends State<AddRecipe> {
                       onPressed: () {
                             /* Navigator.of(context).push(MaterialPageRoute(
                               builder: (BuildContext context) => Perfil())); */
-                              String cadena = '$amount.text $unit of $ingr';
-                              inglist.add('$amount $unit of $ingr');
+                              String cadena = amount.text + ' ' + _key.currentState._currentValue + ' of ' + _key2.currentState._currentValue;
+                              inglist.add(cadena);
+                              setState(() {
+                                inglist = inglist;
+                              });
                               //setState del Container de Ingredients
                                 //escribir el nuevo ingrediente en la bd con su id y el string
-                              //addtodb(cadena, recipeid, user);
+                              addtodb(cadena, 1, widget.user);
                               //ya esta la funcion addtodb abajo
-                              print(cadena);
+                              print('Nueva receta string: ' + amount.text + ' ' + _key.currentState._currentValue + ' of ' + _key2.currentState._currentValue);
                         },
                       child: Icon(
                         Icons.plus_one,
@@ -240,24 +249,21 @@ class _AddRecipeState extends State<AddRecipe> {
       }
     );
   }
-}
 
-addtodb(String cadena, int recipeid, user) async{
-  await DatabaseService(uid:user.uid).addIngredientRecipe(cadena,recipeid);
-}
-
-Widget getTextWd(List<String> inglist)
-{
-  List<Widget> list = new List<Widget>();
-  for(var i=0; i<inglist.length; i++)
+  Widget getTextWd(List<String> inglist)
   {
-    list.add(new Text(inglist[i]));
+    List<Widget> list = new List<Widget>();
+    for(var i=0; i<inglist.length; i++)
+    {
+      list.add(new Text(inglist[i]));
+    }
+
+    return new Column(children: list);
   }
-  return new Column(children: list);
-}
-getIngs(AsyncSnapshot<QuerySnapshot> snapshot, context, ingredients, ingr)
-{
-    log('INGREDIENTS: ' + snapshot.data.documents.toString());
+  
+  getIngs(AsyncSnapshot<QuerySnapshot> snapshot, context, ingredients, ingr, _key)
+  {
+    //log('INGREDIENTS: ' + snapshot.data.documents.toString());
     for(var ing in snapshot.data.documents)
     {
       ingredients.add(ing['name']);
@@ -267,9 +273,16 @@ getIngs(AsyncSnapshot<QuerySnapshot> snapshot, context, ingredients, ingr)
    
     return new Padding(
         padding: const EdgeInsets.all(10.0),
-        child: SettingsWidget(foo: ingredients, secValue: ingr),
+        child: SettingsWidget(key: _key, foo: ingredients, secValue: ingr),
     );
+  }
 }
+
+addtodb(String cadena, int recipeid, user) async{
+  await DatabaseService(uid:user.uid).addIngredientRecipe(cadena,recipeid);
+}
+
+
   
 
 class SettingsWidget extends StatefulWidget {
@@ -291,6 +304,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
   void initState() {
     _dropDownMenuItems = getDropDownMenuItems();
     _currentValue = _dropDownMenuItems[0].value;
+    
     super.initState();
   }
 
@@ -313,26 +327,12 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 value: _currentValue,
                 items: _dropDownMenuItems,
                 onChanged: changedDropDownItem,
-              )/* new Center(
-          child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[              
-              new Container(
-                padding: new EdgeInsets.all(16.0),
-              ),
-              new DropdownButton(
-                value: _currentCity,
-                items: _dropDownMenuItems,
-                onChanged: changedDropDownItem,
               )
-            ],
-          )
-      ), */
     );
   }
 
   void changedDropDownItem(String selectedValue) {
+    log(selectedValue);
     setState(() {
       widget.secValue=selectedValue;
       _currentValue = selectedValue;
