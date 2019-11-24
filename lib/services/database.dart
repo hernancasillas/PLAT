@@ -9,6 +9,7 @@ class DatabaseService{
   //collection reference
   final CollectionReference myUserCollection = Firestore.instance.collection('user');
   final CollectionReference myRecipeCollection = Firestore.instance.collection('recipes');
+  final CollectionReference myIngRecCollection = Firestore.instance.collection('ingrecipes');
 
   Future updateUserData(String name, String email, String username) 
   async {
@@ -17,6 +18,11 @@ class DatabaseService{
       'email': email,
       'username': username
     });
+  }
+
+  Future addIngredientRecipe(String sentence, int recid)
+  async{
+    return await myIngRecCollection.add({'cadena': sentence, 'recipeid': recid});
   }
 
   Future updateUserRecipe(String name, String steps) 

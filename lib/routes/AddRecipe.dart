@@ -8,15 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:examen_flutter/widgets/raisedgradbutton.dart';
+import 'package:examen_flutter/services/database.dart';
 
 
 
 class AddRecipe extends StatefulWidget {
   static final List arr = ["1", "2", "3", "4", "5"];
   static final List units = ["kg", "gr", "cup", "tablespoon","teaspoon", "pinch", "package", "can"];
-
+  //final ing = 'cereal';
   final user;
-
+  
   AddRecipe({Key key, @required this.user}) : super(key: key);
 
 
@@ -27,7 +28,11 @@ class AddRecipe extends StatefulWidget {
 class _AddRecipeState extends State<AddRecipe> {
   final recipeName = TextEditingController();
   final recipeSteps = TextEditingController();
+  var amount = TextEditingController();
+ var unit='kg';
+ var ingr='';
   var ingredients = new List<String>();
+  var inglist = new List<String>();
   @override
   Widget build(BuildContext context) {
     TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 15.0);
@@ -95,16 +100,22 @@ class _AddRecipeState extends State<AddRecipe> {
                       
                         new Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: SettingsWidget(foo: AddRecipe.arr),
+                          child:
+                          Container(
+                            height:25,
+                            width: 20,
+                            child: TextField(
+                              controller: amount, keyboardType: TextInputType.number,)
+                          ),
                         ),
                       
                       new Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: SettingsWidget(foo: AddRecipe.units),
+                          child: SettingsWidget(foo: AddRecipe.units,secValue: unit ),
                         ),
                       
                       Text('of'),
-                      getIngs(snapshot,context, ingredients),
+                      getIngs(snapshot,context, ingredients,ingr),
                       
                     ],
                   ),
@@ -117,6 +128,13 @@ class _AddRecipeState extends State<AddRecipe> {
                       onPressed: () {
                             /* Navigator.of(context).push(MaterialPageRoute(
                               builder: (BuildContext context) => Perfil())); */
+                              String cadena = '$amount.text $unit of $ingr';
+                              inglist.add('$amount $unit of $ingr');
+                              //setState del Container de Ingredients
+                                //escribir el nuevo ingrediente en la bd con su id y el string
+                              //addtodb(cadena, recipeid, user);
+                              //ya esta la funcion addtodb abajo
+                              print(cadena);
                         },
                       child: Icon(
                         Icons.plus_one,
@@ -126,14 +144,18 @@ class _AddRecipeState extends State<AddRecipe> {
                     ),
                     SizedBox(height: 20,),
                 Text('Ingredients'),
-                Container(
+                new Container(
                   margin: const EdgeInsets.all(20),
                   child: Padding(padding: const EdgeInsets.all(0),
-                    child: TextField(
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    expands: true,
-                    ),
+                    //child: TextField(
+                      //keyboardType: TextInputType.multiline,
+                      //maxLines: null,
+                      //expands: true,
+                    //),
+                    child: ListView(
+                      children:<Widget>[ Column(children: <Widget>[
+                        getTextWd(inglist),
+                      ],)],),
                   ),
                   height: 100,
                   decoration: BoxDecoration(border: Border.all()),
@@ -220,8 +242,20 @@ class _AddRecipeState extends State<AddRecipe> {
   }
 }
 
+addtodb(String cadena, int recipeid, user) async{
+  await DatabaseService(uid:user.uid).addIngredientRecipe(cadena,recipeid);
+}
 
-getIngs(AsyncSnapshot<QuerySnapshot> snapshot, context, ingredients)
+Widget getTextWd(List<String> inglist)
+{
+  List<Widget> list = new List<Widget>();
+  for(var i=0; i<inglist.length; i++)
+  {
+    list.add(new Text(inglist[i]));
+  }
+  return new Column(children: list);
+}
+getIngs(AsyncSnapshot<QuerySnapshot> snapshot, context, ingredients, ingr)
 {
     log('INGREDIENTS: ' + snapshot.data.documents.toString());
     for(var ing in snapshot.data.documents)
@@ -230,19 +264,19 @@ getIngs(AsyncSnapshot<QuerySnapshot> snapshot, context, ingredients)
     }
     ingredients.add("test");
     //ingredients.sort((a,b) => a.compareTo(b));
-    
+   
     return new Padding(
         padding: const EdgeInsets.all(10.0),
-        child: SettingsWidget(foo: ingredients),
+        child: SettingsWidget(foo: ingredients, secValue: ingr),
     );
 }
   
 
 class SettingsWidget extends StatefulWidget {
   final List foo;
+  var secValue;
 
-
-  SettingsWidget({Key key, this.foo}) : super(key: key);
+  SettingsWidget({Key key, this.foo, this.secValue}) : super(key: key);
 
   @override
   _SettingsWidgetState createState() => new _SettingsWidgetState();
@@ -300,6 +334,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
 
   void changedDropDownItem(String selectedValue) {
     setState(() {
+      widget.secValue=selectedValue;
       _currentValue = selectedValue;
     });
   }
