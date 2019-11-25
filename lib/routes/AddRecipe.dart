@@ -4,6 +4,7 @@ import 'package:examen_flutter/genShoppingList.dart';
 import 'package:examen_flutter/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
+import 'package:examen_flutter/widgets/loading.dart';
 import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
@@ -50,7 +51,7 @@ class _AddRecipeState extends State<AddRecipe> {
       builder: (context, snapshot) {
         if(!snapshot.hasData)
         {
-          return Text("No data...");
+          return Loading();
         }
         
         return new Scaffold(

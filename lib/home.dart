@@ -8,6 +8,7 @@ import 'package:examen_flutter/routes/ViewRecipe.dart';
 import 'package:examen_flutter/genShoppingList.dart';
 import 'package:examen_flutter/user_list.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
+import 'package:examen_flutter/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +59,12 @@ class Home extends StatelessWidget  {
                   builder: (context, snapshot) {
 
                     //log(snapshot.data.documents.toString());
-                    var doc = snapshot.data.documents;
+                    
+                    if(!snapshot.hasData)
+                      return Loading();
+                    else
+                    {
+                      var doc = snapshot.data.documents;
                     return Center(
             
                     child: Column(
@@ -173,6 +179,8 @@ class Home extends StatelessWidget  {
                     ]
               ),
             );
+                    }
+                    
                   }
                 ) 
           
