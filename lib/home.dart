@@ -5,6 +5,7 @@ import 'package:examen_flutter/routes/AddRecipe.dart';
 import 'package:examen_flutter/routes/GoPremium.dart';
 import 'package:examen_flutter/routes/Menu.dart';
 import 'package:examen_flutter/routes/ViewRecipe.dart';
+import 'package:examen_flutter/genShoppingList.dart';
 import 'package:examen_flutter/user_list.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,11 @@ import 'models/myUser.dart';
 class Home extends StatelessWidget  {
    final style =  new TextStyle(fontFamily: 'Montserrat');
    final user;
+  final favs = new List<DocumentSnapshot>();
+
 
    Home({Key key, @required this.user}) : super(key: key);
-   
+  
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<myUser>>.value(
@@ -50,8 +53,6 @@ class Home extends StatelessWidget  {
         ),
         drawer: AppDrawer(user: user),
         body: 
-        
-        
                 StreamBuilder(
                   stream: Firestore.instance.collection("recipes").document(user.uid).collection(user.uid).snapshots(),
                   builder: (context, snapshot) {
@@ -97,54 +98,11 @@ class Home extends StatelessWidget  {
                         
                       ),
               
-                    /* SizedBox(
-              height: 160.0,
-              child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      InkWell(
-                        child: SizedBox(
-                          width: 160.0,
-                          child: Image.asset("assets/sneakers.png", fit: BoxFit.contain),
-                          
-                        ),
-                        onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => Producto1(image: 'assets/sneakers.png')));} ,
-                      ),
-                      InkWell(
-                        child: SizedBox(
-                          width: 160.0,
-                          child: Image.asset("assets/hoodie.png", fit: BoxFit.contain),
-                          
-                        ),
-                        onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => Producto1(image: 'assets/hoodie.png')));} ,
-                      ),
-                     InkWell(
-                        child: SizedBox(
-                          width: 160.0,
-                          child: Image.asset("assets/supreme.png", fit: BoxFit.contain),
-                          
-                        ),
-                        onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => Producto1(image: 'assets/supreme.png')));} ,
-                      ),
-                      InkWell(
-                        child: SizedBox(
-                          width: 160.0,
-                          child: Image.asset("assets/tee.png", fit: BoxFit.contain),
-                          
-                        ),
-                        onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => Producto1(image: 'assets/tee.png')));} ,
-                      ),
-                    ],
-              ),
-            ), */
+                   
                       SizedBox(height: 20,),
                       Divider(),
                       Text('On the menu', style: TextStyle(fontSize: 25)),
-                      Container(
+                      /*Container(
                         height: 100,
                         width: 100,
                         child: GestureDetector(
@@ -161,7 +119,8 @@ class Home extends StatelessWidget  {
                                   },
                                 ),
                       
-                      ),
+                      ),*/
+                      getExpenseItems(snapshot, context),
                       SizedBox(height: 20,),
                       Divider(),
                       Text('Shopping List', style: TextStyle(fontSize: 25)),
@@ -220,4 +179,53 @@ class Home extends StatelessWidget  {
       ),
     );
   }
+
+  getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot, context) {
+    var cont=0;
+    var docs = snapshot.data.documents;
+    var favs = new List<DocumentSnapshot>();
+    var ind=0;
+    for(var rec in docs)
+    {
+      if(ind<=7)
+      {  
+        if(int.parse(rec['rating'])>=1)
+        {
+          favs.add(rec);
+        }
+        ind++;
+      }
+      else
+        break;
+    }
+    print(favs.length);
+    return CarouselSlider(
+      height: 100.0,
+                        
+      items: favs.map<Widget>((recipe) {
+      return Builder(
+        builder: (BuildContext context) {
+            return GestureDetector(
+                child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                      //margin: EdgeInsets.symmetric(horizontal: 5.0),
+                         height: 100,
+                          child: Image.asset( recipe['image'], fit: BoxFit.contain,)
+                                //Text('text $i', style: TextStyle(fontSize: 16.0),)
+                             ),
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => Menu(user: user)));
+                          },
+              );
+          },
+        );
+      }).toList(),
+                        
+   );
+              
+
 }
+}
+
+

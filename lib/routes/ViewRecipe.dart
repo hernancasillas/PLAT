@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:examen_flutter/genShoppingList.dart';
 import 'package:examen_flutter/main.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:examen_flutter/wrapper.dart';
@@ -14,9 +15,9 @@ class ViewRecipe extends StatelessWidget {
   final user;
   final String rating;
   final String steps;
-  
-  ViewRecipe({Key key, @required this.user, @required this.image, @required this.titulo, @required this.rating, @required this.steps}) : super(key: key);
 
+  ViewRecipe({Key key, @required this.user, @required this.image, @required this.titulo, @required this.rating, @required this.steps}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
