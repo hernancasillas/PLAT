@@ -46,7 +46,7 @@ class Home extends StatelessWidget  {
                 icon: Icon(Icons.add_circle),
                 onPressed: () {
                    Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => AddRecipe()));
+                    builder: (BuildContext context) => AddRecipe(user: user)));
                 },
               ),
             ],

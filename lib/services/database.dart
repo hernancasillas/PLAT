@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:examen_flutter/models/myUser.dart';
 
@@ -20,15 +22,46 @@ class DatabaseService{
     });
   }
 
-  Future addIngredientRecipe(String sentence, int recid)
+  Future addIngredientRecipe(String sentence,int ingrecipeid, int recid)
   async{
     //return await myIngRecCollection.add({'cadena': sentence, 'recipeid': recid});
-    return await myIngRecCollection.document(uid).collection(uid).document('1')
+    log('Agregando: ' + sentence + ' ' + recid.toString() +' para ' + uid);
+    return await myIngRecCollection.document(uid).collection(uid).document(ingrecipeid.toString())
     .setData({
       'cadena': sentence,
       'recipeid': recid,
     });
   }
+
+  Future addRecipe(String uid, String name, String rating, String steps,String image, int recipeId)
+  async{
+    //return await myIngRecCollection.add({'cadena': sentence, 'recipeid': recid});
+    log('Agregando: ' + name + 'con id: ' + recipeId.toString() +  ' para ' + uid);
+    return await myRecipeCollection.document(uid).collection(uid).document(recipeId.toString())
+    .setData({
+      'name': name,
+      'steps': steps,
+      'rating': rating,
+      'image': image,
+    });
+  }
+
+  /* List<String> getIngrecipes()
+  {
+    List<String> lista;
+    //return await myIngRecCollection.add({'cadena': sentence, 'recipeid': recid});
+    log('Gettig increcipes...');
+    dynamic result = myIngRecCollection.document(uid).collection(uid).snapshots();
+    
+    for(var ing in result)
+    {
+      log('LISTA: ' + ing);
+    }
+
+    log('INGRECIPES: ' + result);
+
+    return lista;
+  } */
 
   Future updateUserRecipe(String name, String steps) 
   async {
