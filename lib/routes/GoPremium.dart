@@ -4,87 +4,18 @@ import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:examen_flutter/widgets/raisedgradbutton.dart';
+import 'package:validators/validators.dart';
+
 bool visaPres=false;
 bool masterPres=false;
 bool oxxoPres=false;
 bool americanPres=false;
 
-final _formKey = GlobalKey<FormState>();
 
 final style =  new TextStyle(fontFamily: 'Montserrat');
- final buyPremium = RaisedGradientButton(
-      width: 150,
-          gradient: LinearGradient(
-            colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
-          ),
-          
-           onPressed: () {
-             if (_formKey.currentState.validate()) {
-                  
-            
-             }
-              
-            },
-          child: Text("Buy Premium",
-            textAlign: TextAlign.center,
-            style: style.copyWith(
-              color: Colors.white, fontWeight: FontWeight.bold)),
-        );
-  
-    final numberField = TextFormField(
-          
-          style: style,
-          decoration: InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              hintText: "Card Number",
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-          validator: (val) => val.length < 10 ? 'Numero Correcto' : null,
-          onChanged: (val) {
-             // setState(() => pssswd = val);
-          },
-        );
 
-     final dateField = TextFormField(
-          
-          style: style,
-          decoration: InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              hintText: "MM/AA",
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-          validator: (val) => val.length < 10 ? 'Numero Correcto' : null,
-          onChanged: (val) {
-             // setState(() => passwd = val);
-          },
-        );
-      final cvvField = TextFormField(
-          
-          style: style,
-          decoration: InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              hintText: "CVV",
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-          validator: (val) => val.length < 10 ? 'Numero Correcto' : null,
-          onChanged: (val) {
-             // setState(() => passwd = val);
-          },
-        );
 
-         final nameField = TextFormField(
-          
-          style: style,
-          decoration: InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              hintText: "Card Owner",
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-          validator: (val) => val.length < 10 ? 'Numero Correcto' : null,
-          onChanged: (val) {
-             // setState(() => passwd = val);
-          },
-        );
+
 class GoPremium extends StatelessWidget {
 
   static const String routeName = '/routes/GoPremium';
@@ -92,6 +23,7 @@ class GoPremium extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+        resizeToAvoidBottomPadding: false,
         appBar: GradientAppBar(
         title: Text('Go Premium'),
         gradient: /* LinearGradient(colors: [Colors.blue, Colors.purple, Colors.red]) */
@@ -119,7 +51,7 @@ class GoPremium extends StatelessWidget {
           child: Column(children: <Widget>[
             
             BodyGoPremium(),
-            MyCustomForm(),
+            
             
 
 
@@ -130,42 +62,6 @@ class GoPremium extends StatelessWidget {
 }
 
 
-class MyCustomForm extends StatefulWidget {
-  @override
-  MyCustomFormState createState() {
-    return MyCustomFormState();
-  }
-}
-class MyCustomFormState extends State<MyCustomForm> {
-  // Crea una clave global que identificará de manera única el widget Form
-  // y nos permita validar el formulario
-  //
-  // Nota: Esto es un GlobalKey<FormState>, no un GlobalKey<MyCustomFormState>!
-
-  @override
-  Widget build(BuildContext context) {
-    // Crea un widget Form usando el _formKey que creamos anteriormente
-    return Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Container(
-              width:MediaQuery.of(context).size.width/1.4 ,child:numberField
-            ),
-            Row(mainAxisAlignment: MainAxisAlignment.center,children: <Widget>[
-              Container(child: cvvField, width:MediaQuery.of(context).size.width/3,margin: const EdgeInsets.all(10.0)),
-              Container(child: dateField, width:MediaQuery.of(context).size.width/3,margin: const EdgeInsets.all(10.0))
-            ],),
-            Container(
-              width:MediaQuery.of(context).size.width/1.4 ,child:nameField,margin:const EdgeInsets.only(bottom: 10)
-            ),
-            buyPremium,
-        ],
-      ),
-    );
-  }
-}
 
 
 class BodyGoPremium extends StatefulWidget {
@@ -181,6 +77,8 @@ class _BodyGoPremium extends State<BodyGoPremium> {
   // Variables iniciales
   static Color colorNoPress=Colors.grey;
   static Color colorPress=Colors.black;
+
+final _formKey = GlobalKey<FormState>();
 
 
   Color colorVisa=colorNoPress;
@@ -246,7 +144,137 @@ class _BodyGoPremium extends State<BodyGoPremium> {
   }
   @override
   Widget build(BuildContext context) {
-      return Column(
+    final buyPremium = RaisedGradientButton(
+      width: 150,
+          gradient: LinearGradient(
+            colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
+          ),
+          
+           onPressed: () {
+             if (_formKey.currentState.validate()) {
+                  
+            
+             }
+              
+            },
+          child: Text("Buy Premium",
+            textAlign: TextAlign.center,
+            style: style.copyWith(
+              color: Colors.white, fontWeight: FontWeight.bold)),
+        );
+  
+    final numberField = TextFormField(
+          
+          style: style,
+          decoration: InputDecoration(
+              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              hintText: "Card Number",
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+       //   validator: (val) => val.length < 10 && val.length >10 ? 'Numero Correcto' : null,
+             validator: (value) {
+              if (value.isEmpty) {
+                return 'Please enter some a number card';
+              }else{
+                if(!isNumeric(value) ){
+                  return 'Format Incorrect';
+
+                }else{
+                  if(value.length!=16){
+                    return 'Only 16 digits';
+                  }
+                }
+              
+                return null;
+              }
+            },
+          onChanged: (val) {
+             // setState(() => pssswd = val);
+          },
+        );
+
+     final dateField = TextFormField(
+          
+          style: style,
+          decoration: InputDecoration(
+              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              hintText: "MM/AA",
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+         // validator: (val) => val.length < 10 ? 'Numero Correcto' : null,
+          validator: (value) {
+              if (value.isEmpty) {
+                return 'Please a Date of Expiration';
+              }else{
+                if(!isDate(value) ){
+                  return 'Format Incorrect';
+
+                }else{
+                  
+                }
+              
+                return null;
+              }
+            },
+          onChanged: (val) {
+             // setState(() => passwd = val);
+          },
+        );
+      final cvvField = TextFormField(
+          
+          style: style,
+          decoration: InputDecoration(
+              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              hintText: "CVV",
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+         // validator: (val) => val.length < 10 ? 'Numero Correcto' : null,
+          validator: (value) {
+              if (value.isEmpty) {
+                return 'Please enter some a number card';
+              }else{
+                if(!isNumeric(value) ){
+                  return 'Format Incorrect';
+
+                }else{
+                  if(value.length!=3){
+                    return 'Only 3 digits';
+                  }
+                }
+              
+                return null;
+              }
+            },
+          onChanged: (val) {
+             // setState(() => passwd = val);
+          },
+        );
+
+         final nameField = TextFormField(
+          
+          style: style,
+          decoration: InputDecoration(
+              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              hintText: "Card Owner",
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+          //validator: (val) => val.length < 10 ? 'Numero Correcto' : null,
+           validator: (value) {
+              if (value.isEmpty) {
+                return 'Please enter a name';
+              }else{
+                
+                return null;
+              }
+            },
+          onChanged: (val) {
+             // setState(() => passwd = val);
+          },
+        );
+      return Form(
+        key: _formKey,
+
+        child: Column(
             children:<Widget>[
               Row(mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -262,7 +290,7 @@ class _BodyGoPremium extends State<BodyGoPremium> {
                     child: Image.asset("assets/logo_mastercard.png", fit: BoxFit.contain,),
                     ),
                     onTap:_toggleMaster,
-                  )
+                  ),
                
                
 
@@ -290,15 +318,31 @@ class _BodyGoPremium extends State<BodyGoPremium> {
                     child: Image.asset("assets/logo_americanexpress.png", fit: BoxFit.contain,),
                     ),
                     onTap:_toggleAmerican,
-                    )
+                    ),
+                   
                   
 
 
 
               ],),
-              Text("ole xd"),
+              Text("texto prueba"),
+               Container(
+              width:MediaQuery.of(context).size.width/1.4 ,child:numberField
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center,children: <Widget>[
+              Container(child: cvvField, width:MediaQuery.of(context).size.width/3,margin: const EdgeInsets.all(10.0)),
+              Container(child: dateField, width:MediaQuery.of(context).size.width/3,margin: const EdgeInsets.all(10.0))
+            ],),
+            Container(
+              width:MediaQuery.of(context).size.width/1.4 ,child:nameField,margin:const EdgeInsets.only(bottom: 10)
+            ),
+            buyPremium,
             ],
-          );
+          ),
+
+
+
+      );
              
       
   }
