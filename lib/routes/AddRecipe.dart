@@ -17,6 +17,7 @@ import 'package:examen_flutter/services/database.dart';
 class AddRecipe extends StatefulWidget {
   static final List arr = ["1", "2", "3", "4", "5"];
   static final List units = ["kg", "gr", "cup", "tablespoon","teaspoon", "pinch", "package", "can"];
+  static final List images = ["arroz_frito.png", "cheesecake.png", "crepa.png", "fideo.png", "lentejas.png", "steak.png", "sushi.png", "enchiladas.png"];
   //final ing = 'cereal';
   final user;
   
@@ -246,16 +247,19 @@ class _AddRecipeState extends State<AddRecipe> {
                 ),
                 Row(
                   children: <Widget>[
-                    new Padding(
+                    /*new Padding(
                           padding: const EdgeInsets.only(left: 20),
                           child: SizedBox(
                             height: 120, 
                             width: 120, 
                             child: Image.asset('assets/enchiladas.png', fit: BoxFit.contain,),
                           ),
+                        ),*/
+                  new Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: SettingsWidget(key: _key, foo: AddRecipe.images,secValue: image ),
                         ),
-                    
-                    RaisedGradientButton(
+                    /*RaisedGradientButton(
                       width: 150,
                       
                       gradient: LinearGradient(
@@ -269,7 +273,8 @@ class _AddRecipeState extends State<AddRecipe> {
                         textAlign: TextAlign.center,
                         style: style.copyWith(
                         color: Colors.white, fontWeight: FontWeight.bold)
-                      ),          
+                      ),  */
+
                     ),
                   ],
 
