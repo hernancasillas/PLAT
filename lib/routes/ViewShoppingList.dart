@@ -4,10 +4,14 @@ import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:examen_flutter/services/database.dart';
+import 'package:examen_flutter/widgets/loading.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Plantilla extends StatelessWidget {
-  
+
+class ViewShoppingList extends StatelessWidget {
+  final user;
+
+  ViewShoppingList({Key key, @required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +68,8 @@ getIngredients(AsyncSnapshot<QuerySnapshot> snapshot, context, user){
                               
                               trailing: Icon(Icons.more_vert),
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => GoPremium(user: user)));
+                                //Navigator.of(context).push(MaterialPageRoute(
+                                //builder: (BuildContext context) => GoPremium(user: user)));
                               }
                             ),
                           ),
