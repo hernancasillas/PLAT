@@ -302,6 +302,9 @@ class _AddRecipeState extends State<AddRecipe> {
                               }
                               log('Steps ' + recipeSteps.text);
                               addRecipeToDB(widget.user, recipeName.text, recipeRating.round().toString(), recipeSteps.text, 'assets/cereal.png', recipesLength+1);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) => Wrapper(
+                                  )));
                         },
                       child: Text("Add Recipe",
                         textAlign: TextAlign.center,

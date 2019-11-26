@@ -43,6 +43,7 @@ class DatabaseService{
       'steps': steps,
       'rating': rating,
       'image': image,
+      'id': recipeId,
     });
   }
 

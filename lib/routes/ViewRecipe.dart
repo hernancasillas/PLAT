@@ -15,12 +15,20 @@ class ViewRecipe extends StatelessWidget {
   final user;
   final String rating;
   final String steps;
+  final int recipeId;
 
-  ViewRecipe({Key key, @required this.user, @required this.image, @required this.titulo, @required this.rating, @required this.steps}) : super(key: key);
+  ViewRecipe({Key key, @required this.user, @required this.image, @required this.titulo, @required this.rating, @required this.steps, @required this.recipeId}) : super(key: key);
   
 
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: Firestore.instance.collection("ingrecipes").document(user.uid).collection(user.uid).snapshots(),
+      builder: (context, snapshot1){
+        if(!snapshot1.hasData)
+        {
+          return Text("No data...");
+        }
     return new Scaffold(
         appBar: GradientAppBar(
         title: Text('View Recipe'),
@@ -98,30 +106,11 @@ class ViewRecipe extends StatelessWidget {
                     child:
                     Text('Ingredients', style:TextStyle(fontSize: 18),textAlign: TextAlign.left,),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 5, 15, 0),
+                  Container(
+                    height: 100,
+                    
                     child:
-                    Text("- 2 pieces of eggs",style:TextStyle(fontSize: 16), textAlign: TextAlign.left,),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 5, 15, 0),
-                    child:
-                    Text("- 2 pieces of eggs",style:TextStyle(fontSize: 16), textAlign: TextAlign.left,),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 5, 15, 0),
-                    child:
-                    Text("- 200 grams of sugar",style:TextStyle(fontSize: 16), textAlign: TextAlign.left,),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 5, 15, 0),
-                    child:
-                    Text("- 500 ml of milk",style:TextStyle(fontSize: 16), textAlign: TextAlign.left,),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 5, 15, 0),
-                    child:
-                    Text("- 2 cups of flour",style:TextStyle(fontSize: 16), textAlign: TextAlign.left,),
+                    Column(children:getIngredients(snapshot1, context, this.recipeId),),
                   ),
                   SizedBox(height: 30.0),
                   Padding(
@@ -141,8 +130,33 @@ class ViewRecipe extends StatelessWidget {
               ],
             );
           }
+      
         ),
 
       );
+      }
+    );
+  }
+getIngredients(AsyncSnapshot<QuerySnapshot> snapshot, context, recipeid){
+    var ings = new List<DocumentSnapshot>();
+    var docs = snapshot.data.documents;
+
+    for(DocumentSnapshot dc in docs)
+    {
+      if(dc['recipeid'] == recipeid)
+      {
+        ings.add(dc);
+      }
+    }
+   
+    return ings.map((doc) => new 
+       Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 15, 0),
+                    child:
+                    Text(doc['cadena'],style:TextStyle(fontSize: 16), textAlign: TextAlign.left,),
+                  ),      
+    )
+    .toList();
+
   }
 }

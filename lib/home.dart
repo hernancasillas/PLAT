@@ -88,13 +88,15 @@ class Home extends StatelessWidget  {
                                 //Text('text $i', style: TextStyle(fontSize: 16.0),)
                                 ),
                                 onTap: (){
+                                  
                                   Navigator.of(context).push(MaterialPageRoute(
                                   builder: (BuildContext context) => ViewRecipe(
                                     user: user, 
                                     image: recipe['image'], 
                                     titulo: recipe['name'], 
                                     rating: recipe['rating'],
-                                    steps: recipe['steps']
+                                    steps: recipe['steps'],
+                                    recipeId: recipe['id'],
                                   )));
                                 },
                               );
