@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:examen_flutter/routes/AddRecipe.dart';
 import 'package:examen_flutter/routes/GoPremium.dart';
 import 'package:examen_flutter/routes/Menu.dart';
+import 'package:examen_flutter/routes/SizeConfig.dart';
 import 'package:examen_flutter/routes/ViewRecipe.dart';
 import 'package:examen_flutter/genShoppingList.dart';
 import 'package:examen_flutter/user_list.dart';
@@ -26,6 +27,14 @@ class Home extends StatelessWidget  {
   
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: Firestore.instance.collection("ingrecipes").document(user.uid).collection(user.uid).snapshots(),
+      builder:(context, snapshot1){
+        if(!snapshot1.hasData)
+        {
+          return Text("No data");
+        }
+
     return StreamProvider<List<myUser>>.value(
         value: DatabaseService().users,
         child: Scaffold(
@@ -66,8 +75,13 @@ class Home extends StatelessWidget  {
                     {
                       var doc = snapshot.data.documents;
                     return Center(
-            
-                    child: Column(
+                      child:
+                       ListView(
+                         children:<Widget>[
+                         Container(
+                           height: 700,
+                           child:
+                           Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         
@@ -135,7 +149,7 @@ class Home extends StatelessWidget  {
                       Expanded(
                         child: ListView(
                         children: <Widget>[
-                          SizedBox(height: 20,),
+                          /*SizedBox(height: 20,),
                           Card(
                             child: ListTile(
                               leading: Icon(Icons.shopping_basket, size: 50),
@@ -147,47 +161,63 @@ class Home extends StatelessWidget  {
                                 builder: (BuildContext context) => GoPremium()));
                               }
                             ),
-                          ),
-                          SizedBox(height: 20,),
-                          Card(
-                            child: ListTile(
-                              leading: Icon(Icons.shopping_basket, size: 50),
-                              title: Text('Cheese', style: TextStyle(fontSize: 30)),
-                              subtitle: Text('Amount: 1', style: TextStyle(fontSize: 20)),
-                              trailing: Icon(Icons.more_vert),
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => GoPremium()));
-                              }
-                            ),
-                          ),
-                          SizedBox(height: 20,),
-                          Card(
-                            child: ListTile(
-                              leading: Icon(Icons.shopping_basket, size: 50),
-                              title: Text('Tortilla', style: TextStyle(fontSize: 30)),
-                              subtitle: Text('Amount: 1 kg', style: TextStyle(fontSize: 20)),
-                              trailing: Icon(Icons.more_vert),
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => GoPremium()));
-                              }
-                            ),
-                          ),
-                          SizedBox(height: 20,),
+                          ),*/
+                          Container(
+                            height:200,
+                            child:
+                          ListView(
+                            children:getIngredients(snapshot1, context),
+                            ),),
+                          SizedBox(height: 90,),
                         ],
                       ),
                       ),
                     ]
               ),
+                         
+                       ),
+                         ],
+                       ),
             );
                     }
-                    
+                  
                   }
+      
                 ) 
+        )
           
-      ),
+      );
+      }
     );
+  }
+
+getIngredients(AsyncSnapshot<QuerySnapshot> snapshot, context){
+    
+    var docs = snapshot.data.documents;
+    print('HOLAAAA');
+    print(docs[0]['cadena']);
+    return docs.map((doc) => new Column(
+      
+      children:<Widget>[
+
+     SizedBox(height: 10,),
+                          Card(
+                            child: ListTile(
+                              leading: Icon(Icons.shopping_basket, size: 50),
+                              title: Text(doc['cadena'], style: TextStyle(fontSize: 25)),
+                              
+                              trailing: Icon(Icons.more_vert),
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => GoPremium()));
+                              }
+                            ),
+                          ),
+      ],      
+    )
+    )
+    .toList();
+
   }
 
   getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot, context) {

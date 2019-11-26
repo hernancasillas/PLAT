@@ -140,6 +140,7 @@ class Menu extends StatelessWidget {
                                           user: user, rating: 
                                           doc['rating'], 
                                           steps: doc['steps'],
+                                          recipeId: doc['id'],
                                           )));
                                       },
                                     ),
@@ -207,6 +208,7 @@ class Menu extends StatelessWidget {
                                           user: user, rating: 
                                           doc['rating'], 
                                           steps: doc['steps'],
+                                          recipeId: doc['id'],
                                           )));
                                       },
                                     ),
