@@ -4,6 +4,7 @@ import 'package:examen_flutter/models/myUser.dart';
 import 'package:examen_flutter/services/database.dart';
 import 'package:examen_flutter/user_list.dart'; */
 import 'package:examen_flutter/widgets/drawer.dart';
+import 'package:examen_flutter/widgets/loading.dart';
 import 'package:examen_flutter/widgets/raisedgradbutton.dart';
 import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class Perfil extends StatelessWidget {
             builder: (context, snapshot) {
               if(!snapshot.hasData)
               {
-                return Text("Loading");
+                return Loading();
               }
               var userDocument = snapshot.data;
               
@@ -81,7 +82,7 @@ class Perfil extends StatelessWidget {
                             ),
                             onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (BuildContext context) => EditProfile(user: user)));
+                                    builder: (BuildContext context) => EditProfile(user: user, name: userDocument['name'], email: userDocument['email'], usuario: userDocument['username'],)));
                               },
                             child: Text("Edit Profile",
                               textAlign: TextAlign.center,

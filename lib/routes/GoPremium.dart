@@ -1,4 +1,5 @@
 
+import 'package:examen_flutter/routes/Confirmacion.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,7 @@ class GoPremium extends StatelessWidget {
           
           child: Column(children: <Widget>[
             
-            BodyGoPremium(),
+            BodyGoPremium(user: user),
             
             
 
@@ -67,7 +68,9 @@ class GoPremium extends StatelessWidget {
 
 
 class BodyGoPremium extends StatefulWidget {
-  
+  final user;
+
+  BodyGoPremium({Key key, @required this.user}) : super(key: key);
   @override
   _BodyGoPremium createState() => _BodyGoPremium();
 }
@@ -156,7 +159,7 @@ final _formKey = GlobalKey<FormState>();
              if (_formKey.currentState.validate()) {
                   
                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => Wrapper())); 
+                    builder: (BuildContext context) => Confirmacion(user: widget.user))); 
              }
               
             },
