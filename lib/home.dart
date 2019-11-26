@@ -1,13 +1,13 @@
-import 'dart:developer';
+/* import 'dart:developer'; */
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:examen_flutter/routes/AddRecipe.dart';
 import 'package:examen_flutter/routes/GoPremium.dart';
 import 'package:examen_flutter/routes/Menu.dart';
-import 'package:examen_flutter/routes/SizeConfig.dart';
+/* import 'package:examen_flutter/routes/SizeConfig.dart'; */
 import 'package:examen_flutter/routes/ViewRecipe.dart';
-import 'package:examen_flutter/genShoppingList.dart';
-import 'package:examen_flutter/user_list.dart';
+/* import 'package:examen_flutter/genShoppingList.dart';
+import 'package:examen_flutter/user_list.dart'; */
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:examen_flutter/widgets/loading.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +32,7 @@ class Home extends StatelessWidget  {
       builder:(context, snapshot1){
         if(!snapshot1.hasData)
         {
-          return Text("No data");
+          return Loading();
         }
 
     return StreamProvider<List<myUser>>.value(
@@ -148,7 +148,7 @@ class Home extends StatelessWidget  {
                       Text('Shopping List', style: TextStyle(fontSize: 25)),
                       Expanded(
                         child: ListView(
-                        children: <Widget>[
+                        children: getIngredients(snapshot1, context, user)/* <Widget>[
                           /*SizedBox(height: 20,),
                           Card(
                             child: ListTile(
@@ -169,7 +169,7 @@ class Home extends StatelessWidget  {
                             children:getIngredients(snapshot1, context),
                             ),),
                           SizedBox(height: 90,),
-                        ],
+                        ], */
                       ),
                       ),
                     ]
@@ -191,11 +191,11 @@ class Home extends StatelessWidget  {
     );
   }
 
-getIngredients(AsyncSnapshot<QuerySnapshot> snapshot, context){
+getIngredients(AsyncSnapshot<QuerySnapshot> snapshot, context, user){
     
     var docs = snapshot.data.documents;
-    print('HOLAAAA');
-    print(docs[0]['cadena']);
+    //print('HOLAAAA');
+    //print(docs[0]['cadena']);
     return docs.map((doc) => new Column(
       
       children:<Widget>[
@@ -209,7 +209,7 @@ getIngredients(AsyncSnapshot<QuerySnapshot> snapshot, context){
                               trailing: Icon(Icons.more_vert),
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => GoPremium()));
+                                builder: (BuildContext context) => GoPremium(user: user)));
                               }
                             ),
                           ),
@@ -238,7 +238,7 @@ getIngredients(AsyncSnapshot<QuerySnapshot> snapshot, context){
       else
         break;
     }
-    print(favs.length);
+    //print(favs.length);
     return CarouselSlider(
       height: 100.0,
                         

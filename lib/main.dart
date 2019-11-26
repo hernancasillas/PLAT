@@ -1,21 +1,21 @@
-import 'dart:io';
+/* import 'dart:io'; */
 
-import 'package:examen_flutter/routes/GoPremium.dart';
+/* import 'package:examen_flutter/routes/GoPremium.dart'; */
 import 'package:examen_flutter/routes/Registro.dart';
-import 'package:examen_flutter/routes/Menu.dart';
+/* import 'package:examen_flutter/routes/Menu.dart'; */
 import 'package:examen_flutter/routes/ForgotPassword.dart';
-import 'package:examen_flutter/routes/ViewRecipe.dart';
-import 'package:examen_flutter/routes/AddRecipe.dart';
+/* import 'package:examen_flutter/routes/ViewRecipe.dart';
+import 'package:examen_flutter/routes/AddRecipe.dart'; */
 import 'package:examen_flutter/models/user.dart';
 import 'package:examen_flutter/services/auth.dart';
 import 'package:examen_flutter/widgets/loading.dart';
 import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:examen_flutter/widgets/drawer.dart';
+/* import 'package:examen_flutter/widgets/drawer.dart'; */
 import 'package:examen_flutter/widgets/raisedgradbutton.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+/* import 'package:carousel_slider/carousel_slider.dart'; */
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthService().user,
       child: MaterialApp(
-            home: Wrapper(),
+            home: MyHomePage(),
       ),
     );
     
@@ -54,7 +54,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
- class MainScreen extends StatelessWidget  {
+ /* class MainScreen extends StatelessWidget  {
    final style =  new TextStyle(fontFamily: 'Montserrat');
    
   @override
@@ -78,7 +78,7 @@ class MyHomePage extends StatefulWidget {
               icon: Icon(Icons.add_circle),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => AddRecipe()));
+                  builder: (BuildContext context) => AddRecipe(user: user)));
               },
             ),
           ],
@@ -249,15 +249,15 @@ class MyHomePage extends StatefulWidget {
         ),
       ),
     );
-  }
-}
+  } 
+}*/
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return new SplashScreen(
       seconds: 5,
-      navigateAfterSeconds: new Login(),
+      navigateAfterSeconds: new Wrapper(),
       title: new Text('Welcome to PLAT',
       style: new TextStyle(
         fontWeight: FontWeight.bold,
@@ -270,7 +270,7 @@ class _MyHomePageState extends State<MyHomePage> {
       styleTextUnderTheLoader: new TextStyle(),
       photoSize: 100.0,
       onClick: ()=>print("Flutter Egypt"),
-      loaderColor: Colors.red
+      loaderColor: Colors.blue
     );
   }
 }
@@ -491,7 +491,7 @@ class Login extends StatelessWidget {
           onPressed: () {
             if(username.text == 'admin' && password.text =='admin')
                 return Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => MainScreen()));
+                  builder: (BuildContext context) => Wrapper()));
               else
                 return showDialog(
                   context: context,
@@ -540,7 +540,7 @@ class Login extends StatelessWidget {
               icon: Icon(Icons.home),
               onPressed: () {
                  Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => MainScreen()));
+                  builder: (BuildContext context) => Wrapper()));
               },
             ),
           ],

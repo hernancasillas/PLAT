@@ -1,5 +1,5 @@
-import 'package:examen_flutter/services/auth.dart';
-import 'package:examen_flutter/services/database.dart';
+/* import 'package:examen_flutter/services/auth.dart';
+import 'package:examen_flutter/services/database.dart'; */
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -7,11 +7,11 @@ var favs = new List<DocumentSnapshot>();
 StreamBuilder<QuerySnapshot> snap;
 
 getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot, context) {
-    var cont=0;
+    /* var cont=0; */
     var docs = snapshot.data.documents;
     
     var ind=0;
-    bool lessthan=false;
+    /* bool lessthan=false; */
 
     for(var rec in docs)
     {

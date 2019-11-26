@@ -19,7 +19,9 @@ final style =  new TextStyle(fontFamily: 'Montserrat');
 class GoPremium extends StatelessWidget {
 
   static const String routeName = '/routes/GoPremium';
-  
+  final user;
+
+  GoPremium({Key key, @required this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -43,7 +45,7 @@ class GoPremium extends StatelessWidget {
             ),
           ],
       ),
-        drawer: AppDrawer(),
+        drawer: AppDrawer(user: user),
 
 
         body: Center(
@@ -153,7 +155,8 @@ final _formKey = GlobalKey<FormState>();
            onPressed: () {
              if (_formKey.currentState.validate()) {
                   
-            
+               Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => Wrapper())); 
              }
               
             },
@@ -276,6 +279,7 @@ final _formKey = GlobalKey<FormState>();
 
         child: Column(
             children:<Widget>[
+              SizedBox(height: 50,),
               Row(mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
@@ -325,7 +329,7 @@ final _formKey = GlobalKey<FormState>();
 
 
               ],),
-              Text("texto prueba"),
+              
                Container(
               width:MediaQuery.of(context).size.width/1.4 ,child:numberField
             ),

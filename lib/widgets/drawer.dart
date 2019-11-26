@@ -1,7 +1,6 @@
 
 import 'package:examen_flutter/models/user.dart';
 import 'package:examen_flutter/routes/Perfil.dart';
-import 'package:examen_flutter/routes/Plantilla.dart';
 import 'package:examen_flutter/routes/FAQ.dart';
 import 'package:examen_flutter/routes/GoPremium.dart';
 import 'package:examen_flutter/routes/about.dart';
@@ -44,28 +43,28 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => About()));
+                builder: (BuildContext context) => About(user: user)));
               },
             ),
           _createDrawerItem(icon: Icons.question_answer, text: 'FAQ', 
             onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => FAQ()));
+                builder: (BuildContext context) => FAQ(user: user)));
               },
             ),
             _createDrawerItem(icon: Icons.lock_open, text: 'Go Premium',
             onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => GoPremium()));
+                builder: (BuildContext context) => GoPremium(user: user)));
               },
             ),
             _createDrawerItem(icon: Icons.perm_device_information , text: 'Privacy Agreement',
             onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => PrivacyAgreement()));
+                builder: (BuildContext context) => PrivacyAgreement(user: user)));
               },
             ),
             _createDrawerItem(icon: Icons.exit_to_app , text: 'Sign Out',

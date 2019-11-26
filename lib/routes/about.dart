@@ -6,7 +6,9 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class About extends StatelessWidget {
   static const String routeName = '/routes/about';
+  final user;
 
+  About({Key key, @required this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -29,7 +31,7 @@ class About extends StatelessWidget {
             ),
           ],
       ),
-        drawer: AppDrawer(),
+        drawer: AppDrawer(user: user),
         body: Center(
           child: ListView(
             children: <Widget>[

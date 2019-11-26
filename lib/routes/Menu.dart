@@ -1,9 +1,10 @@
-import 'dart:developer';
+/* import 'dart:developer'; */
 import 'package:examen_flutter/Routes/SizeConfig.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:examen_flutter/main.dart';
+/* import 'package:examen_flutter/main.dart'; */
 import 'package:examen_flutter/routes/ViewRecipe.dart';
 import 'package:examen_flutter/widgets/drawer.dart';
+import 'package:examen_flutter/widgets/loading.dart';
 import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
@@ -22,7 +23,7 @@ class Menu extends StatelessWidget {
       builder: (context, snapshot) {
         if(!snapshot.hasData)
         {
-          return Text("No data...");
+          return Loading();
         }
         return new Scaffold(
             appBar: GradientAppBar(
@@ -109,6 +110,7 @@ class Menu extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      
                       Column(
                         children: <Widget>[
                           Container(
@@ -155,9 +157,11 @@ class Menu extends StatelessWidget {
                 ),
               ),
           
-            ),
-          )
+            )
+            
+      )
             .toList();
+            
       }
       else
       {

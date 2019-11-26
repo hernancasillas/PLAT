@@ -5,7 +5,9 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class FAQ extends StatelessWidget {
   static const String routeName = '/routes/Vendedores';
+  final user;
 
+  FAQ({Key key, @required this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -28,7 +30,7 @@ class FAQ extends StatelessWidget {
             ),
           ],
       ),
-        drawer: AppDrawer(),
+        drawer: AppDrawer(user: user),
         body: Center(
           child:Column(
             children:<Widget>[

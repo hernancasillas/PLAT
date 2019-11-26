@@ -1,4 +1,4 @@
-import 'package:examen_flutter/main.dart';
+/* import 'package:examen_flutter/main.dart'; */
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,9 @@ class EditProfile extends StatelessWidget {
   static const String routeName = '/routes/EditProfile';
   final username = TextEditingController();
   final password = TextEditingController();
-  
+  final user;
+
+  EditProfile({Key key, @required this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
@@ -51,7 +53,7 @@ class EditProfile extends StatelessWidget {
           onPressed: () {
             //guardar name e email
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Perfil()));
+                  builder: (BuildContext context) => Perfil(user: user)));
             },
           child: Text("Save",
             textAlign: TextAlign.center,
@@ -79,7 +81,7 @@ class EditProfile extends StatelessWidget {
             ),
           ],
       ),
-        drawer: AppDrawer(),
+        drawer: AppDrawer(user: user),
         body: Center(
           child: ListView(
             children: <Widget>[

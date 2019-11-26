@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:examen_flutter/main.dart';
+/* import 'package:examen_flutter/main.dart';
 import 'package:examen_flutter/models/myUser.dart';
 import 'package:examen_flutter/services/database.dart';
-import 'package:examen_flutter/user_list.dart';
+import 'package:examen_flutter/user_list.dart'; */
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:examen_flutter/widgets/raisedgradbutton.dart';
 import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:examen_flutter/routes/EditProfile.dart';
-import 'package:provider/provider.dart';
+/* import 'package:provider/provider.dart'; */
 
 class Perfil extends StatelessWidget {
   static const String routeName = '/routes/Perfil';
@@ -81,7 +81,7 @@ class Perfil extends StatelessWidget {
                             ),
                             onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (BuildContext context) => EditProfile()));
+                                    builder: (BuildContext context) => EditProfile(user: user)));
                               },
                             child: Text("Edit Profile",
                               textAlign: TextAlign.center,
