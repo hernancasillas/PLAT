@@ -46,13 +46,15 @@ class ViewShoppingList extends StatelessWidget {
         body: Center(
           child:Column(
             children: getShop(snapshot1, context, user),
-            ],
+            
           ),
           )
       );
+      }
+    );
   }
 }
-getIngredients(AsyncSnapshot<QuerySnapshot> snapshot, context, user){
+getShop(AsyncSnapshot<QuerySnapshot> snapshot, context, user){
     
     var docs = snapshot.data.documents;
 

@@ -40,6 +40,7 @@ class _AddRecipeState extends State<AddRecipe> {
   var amount = TextEditingController();
   var unit='kg';
   var ingr='';
+  var imagen="crepa.png";
   var ingredients = new List<String>();
   var inglist = new List<String>();
   double recipeRating = 5;
@@ -132,7 +133,10 @@ class _AddRecipeState extends State<AddRecipe> {
                       
                       Text('of'),
                       getIngs(snapshot,context, ingredients,ingr, _key2),
-                      
+                      new Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: SettingsWidget(key: _key, foo: AddRecipe.images, secValue: imagen ),
+                        ),
                     ],
                   ),
                   RaisedGradientButton(
@@ -245,7 +249,9 @@ class _AddRecipeState extends State<AddRecipe> {
                   height: 100,
                   decoration: BoxDecoration(border: Border.all()),
                 ),
+              
                 Row(
+                   
                   children: <Widget>[
                     /*new Padding(
                           padding: const EdgeInsets.only(left: 20),
@@ -255,10 +261,10 @@ class _AddRecipeState extends State<AddRecipe> {
                             child: Image.asset('assets/enchiladas.png', fit: BoxFit.contain,),
                           ),
                         ),*/
-                  new Padding(
+                 /* new Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: SettingsWidget(key: _key, foo: AddRecipe.images,secValue: image ),
-                        ),
+                          child: SettingsWidget(key: _key, foo: AddRecipe.images, secValue: image ),
+                        ),*/
                     /*RaisedGradientButton(
                       width: 150,
                       
@@ -275,7 +281,7 @@ class _AddRecipeState extends State<AddRecipe> {
                         color: Colors.white, fontWeight: FontWeight.bold)
                       ),  */
 
-                    ),
+                    
                   ],
 
                 ),

@@ -6,6 +6,7 @@ import 'package:examen_flutter/routes/GoPremium.dart';
 import 'package:examen_flutter/routes/Menu.dart';
 /* import 'package:examen_flutter/routes/SizeConfig.dart'; */
 import 'package:examen_flutter/routes/ViewRecipe.dart';
+import 'package:examen_flutter/routes/ViewShoppingList.dart';
 /* import 'package:examen_flutter/genShoppingList.dart';
 import 'package:examen_flutter/user_list.dart'; */
 import 'package:examen_flutter/widgets/drawer.dart';
@@ -209,6 +210,7 @@ getIngredients(AsyncSnapshot<QuerySnapshot> snapshot, context, user){
                               trailing: Icon(Icons.more_vert),
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
+                                  //builder: (BuildContext context) => ViewShoppingList(user: user)));
                                 builder: (BuildContext context) => GoPremium(user: user)));
                               }
                             ),
