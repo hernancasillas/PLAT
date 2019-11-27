@@ -210,12 +210,35 @@ final _formKey = GlobalKey<FormState>();
          // validator: (val) => val.length < 10 ? 'Numero Correcto' : null,
           validator: (value) {
               if (value.isEmpty) {
-                return 'Please a Date of Expiration';
+                return 'Incorrect';
               }else{
-                if(!isDate(value) ){
-                  return 'Format Incorrect';
-
+                if(value.length!=5){
+                  return 'Incorrect';
                 }else{
+                  var val1=value[0];
+                  var val2=value[1];
+                  var val3=value[2];
+                  var val4=value[3];
+                  var val5=value[4];
+
+                  if(isNumeric(val1) && isNumeric(val2) && value[2]=='/' && isNumeric(val4) && isNumeric(val5))
+                  {
+                    //calcular si el numero de mes no sea mayor que 12 o igual a 0
+                    var numeroS=value[0]+value[1];
+                    var numeroI=int.parse(numeroS);
+                    if(numeroI>=1 && numeroI<=12){
+                      return null;
+                    }else{
+                      return 'Incorrect';
+                    }
+
+                   
+                  }
+                  else{
+                    return 'Incorrect';
+                  }
+
+                  
                   
                 }
               
