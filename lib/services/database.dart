@@ -18,7 +18,8 @@ class DatabaseService{
     return await myUserCollection.document(uid).setData({
       'name': name,
       'email': email,
-      'username': username
+      'username': username,
+      'isPremium': '0'
     });
   }
 
@@ -36,7 +37,7 @@ class DatabaseService{
   Future addRecipe(String uid, String name, String rating, String steps,String image, int recipeId)
   async{
     //return await myIngRecCollection.add({'cadena': sentence, 'recipeid': recid});
-    log('Agregando: ' + name + 'con id: ' + recipeId.toString() +  ' para ' + uid);
+    log('Agregando: ' + name + 'con id: ' + recipeId.toString() +  ' para ' + uid + ' con imagen' + image);
     return await myRecipeCollection.document(uid).collection(uid).document(recipeId.toString())
     .setData({
       'name': name,

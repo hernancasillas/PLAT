@@ -17,7 +17,7 @@ import 'package:examen_flutter/services/database.dart';
 class AddRecipe extends StatefulWidget {
   static final List arr = ["1", "2", "3", "4", "5"];
   static final List units = ["kg", "gr", "cup", "tablespoon","teaspoon", "pinch", "package", "can"];
-  static final List images = ["arroz_frito.png", "cheesecake.png", "crepa.png", "fideo.png", "lentejas.png", "steak.png", "sushi.png", "enchiladas.png"];
+  /* static final List images = ["arroz_frito.png", "cheesecake.png", "crepa.png", "fideo.png", "lentejas.png", "steak.png", "sushi.png", "enchiladas.png"]; */
   //final ing = 'cereal';
   final user;
   
@@ -32,6 +32,8 @@ class _AddRecipeState extends State<AddRecipe> {
   
   final GlobalKey<_SettingsWidgetState> _key = GlobalKey();
   final GlobalKey<_SettingsWidgetState> _key2 = GlobalKey();
+  List<String> imagePaths = ['assets/default-recipe.png','assets/albondigas.png', 'assets/arroz_frito.png', 'assets/arroz_vapor.png', 'assets/cereal.png'];
+  List<String> imageNames = ['Other', 'Albondigas', 'Arroz Frito', 'Arroz al vapor', 'Cereal'];
 
   var ingrecipesLength;
   var recipesLength;
@@ -43,6 +45,7 @@ class _AddRecipeState extends State<AddRecipe> {
   var imagen="crepa.png";
   var ingredients = new List<String>();
   var inglist = new List<String>();
+  var imageRoute = 'assets/default-recipe.png';
   double recipeRating = 5;
 
   @override
@@ -108,6 +111,7 @@ class _AddRecipeState extends State<AddRecipe> {
                       setState(() {
                         recipeRating = rating;
                       });
+                      
                   },
                 ),
                   
@@ -133,10 +137,7 @@ class _AddRecipeState extends State<AddRecipe> {
                       
                       Text('of'),
                       getIngs(snapshot,context, ingredients,ingr, _key2),
-                      new Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: SettingsWidget(key: _key, foo: AddRecipe.images, secValue: imagen ),
-                        ),
+                      
                     ],
                   ),
                   RaisedGradientButton(
@@ -217,8 +218,8 @@ class _AddRecipeState extends State<AddRecipe> {
                       );
                   }
                   
-                  ,)
-                  ,
+                  ,),
+                  
                 /* new Container(
                   margin: const EdgeInsets.all(20),
                   child: Padding(padding: const EdgeInsets.all(0),
@@ -253,38 +254,47 @@ class _AddRecipeState extends State<AddRecipe> {
                 Row(
                    
                   children: <Widget>[
-                    /*new Padding(
+                    new Padding(
                           padding: const EdgeInsets.only(left: 20),
                           child: SizedBox(
                             height: 120, 
                             width: 120, 
-                            child: Image.asset('assets/enchiladas.png', fit: BoxFit.contain,),
+                            child: Image.asset(imageRoute, fit: BoxFit.contain,),
                           ),
-                        ),*/
+                        ),
                  /* new Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: SettingsWidget(key: _key, foo: AddRecipe.images, secValue: image ),
                         ),*/
-                    /*RaisedGradientButton(
+                    RaisedGradientButton(
                       width: 150,
-                      
-                      gradient: LinearGradient(
-                        colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
-                      ),
-                      onPressed: () {
-                            /* Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => Perfil())); */
-                        },
                       child: Text("Change Picture",
                         textAlign: TextAlign.center,
                         style: style.copyWith(
                         color: Colors.white, fontWeight: FontWeight.bold)
-                      ),  */
+                        ),
+                      gradient: LinearGradient(
+                        colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
+                      ),
+                      onPressed: () {
+                          showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
+                            return Container(
+                              child: Padding(
+                                padding: const EdgeInsets.all(32.0),
+                                child: ListView(children: <Widget>[
+                                    getImages()
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
+                      }
+                        
 
-                    
+                    ),
                   ],
 
-                ),
+                ), 
                 
               ],
               )
@@ -312,7 +322,7 @@ class _AddRecipeState extends State<AddRecipe> {
                                 log('Ings ' + ing);
                               }
                               log('Steps ' + recipeSteps.text);
-                              addRecipeToDB(widget.user, recipeName.text, recipeRating.round().toString(), recipeSteps.text, 'assets/cereal.png', recipesLength+1);
+                              addRecipeToDB(widget.user, recipeName.text, recipeRating.round().toString(), recipeSteps.text, imageRoute, recipesLength+1);
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (BuildContext context) => Wrapper(
                                   )));
@@ -345,6 +355,37 @@ class _AddRecipeState extends State<AddRecipe> {
     }
 
     return new Column(children: list);
+  }
+
+  Widget getImages()
+  {
+    List<Widget> list = new List<Widget>();
+    if(imagePaths.length == imageNames.length)
+    {
+      for(var i = 0; i < imagePaths.length; i++)
+      { 
+        list.add(
+          new GestureDetector(
+                                      child: Card(
+                                        child: ListTile(
+                                          leading: Image.asset(imagePaths[i]),
+                                          title: Text(imageNames[i]),
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        print(imageNames[i]);
+                                        setState(() {
+                                          imageRoute = imagePaths[i];
+                                        });
+                                        Navigator.pop(context);
+                                      }
+                                    )
+          );
+      }
+
+      return new Column(children: list);  
+    }
+    return Text('The amount of names is not equals as the amount of images');
   }
 
 //NO SE HACER ESTO

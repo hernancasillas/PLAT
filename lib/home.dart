@@ -147,31 +147,41 @@ class Home extends StatelessWidget  {
                       SizedBox(height: 20,),
                       Divider(),
                       Text('Shopping List', style: TextStyle(fontSize: 25)),
-                      Expanded(
-                        child: ListView(
-                        children: getIngredients(snapshot1, context, user)/* <Widget>[
-                          /*SizedBox(height: 20,),
-                          Card(
-                            child: ListTile(
-                              leading: Icon(Icons.shopping_basket, size: 50),
-                              title: Text('Eggs', style: TextStyle(fontSize: 30)),
-                              subtitle: Text('Amount: 12', style: TextStyle(fontSize: 20)),
-                              trailing: Icon(Icons.more_vert),
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => GoPremium()));
-                              }
-                            ),
-                          ),*/
-                          Container(
-                            height:200,
-                            child:
-                          ListView(
-                            children:getIngredients(snapshot1, context),
-                            ),),
-                          SizedBox(height: 90,),
-                        ], */
-                      ),
+                      StreamBuilder(
+                        stream: Firestore.instance.collection("user").document(user.uid).snapshots(),
+                        builder: (context, snapshot) {
+                          if(!snapshot.hasData)
+                          {
+                            return Loading();
+                          }
+                          var doc = snapshot.data;
+                          return Expanded(
+                            child: ListView(
+                            children: getIngredients(snapshot1, context, user, doc)/* <Widget>[
+                              /*SizedBox(height: 20,),
+                              Card(
+                                child: ListTile(
+                                  leading: Icon(Icons.shopping_basket, size: 50),
+                                  title: Text('Eggs', style: TextStyle(fontSize: 30)),
+                                  subtitle: Text('Amount: 12', style: TextStyle(fontSize: 20)),
+                                  trailing: Icon(Icons.more_vert),
+                                  onTap: () {
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (BuildContext context) => GoPremium()));
+                                  }
+                                ),
+                              ),*/
+                              Container(
+                                height:200,
+                                child:
+                              ListView(
+                                children:getIngredients(snapshot1, context),
+                                ),),
+                              SizedBox(height: 90,),
+                            ], */
+                          ),
+                          );
+                        }
                       ),
                     ]
               ),
@@ -192,9 +202,10 @@ class Home extends StatelessWidget  {
     );
   }
 
-getIngredients(AsyncSnapshot<QuerySnapshot> snapshot, context, user){
+getIngredients(AsyncSnapshot<QuerySnapshot> snapshot, context, user, usuario){
     
     var docs = snapshot.data.documents;
+    //print(usuario['isPremium']);
     //print('HOLAAAA');
     //print(docs[0]['cadena']);
     return docs.map((doc) => new Column(
@@ -209,9 +220,19 @@ getIngredients(AsyncSnapshot<QuerySnapshot> snapshot, context, user){
                               
                               trailing: Icon(Icons.more_vert),
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
+                                if(usuario['isPremium'] == '0')
+                                {
+                                  Navigator.of(context).push(MaterialPageRoute(
                                   //builder: (BuildContext context) => ViewShoppingList(user: user)));
-                                builder: (BuildContext context) => GoPremium(user: user)));
+                                  builder: (BuildContext context) => GoPremium(user: user)));
+                                }
+                                else
+                                {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) => ViewShoppingList(user: user)));
+                                  
+                                }
+                                
                               }
                             ),
                           ),

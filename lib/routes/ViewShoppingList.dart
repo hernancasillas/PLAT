@@ -44,7 +44,7 @@ class ViewShoppingList extends StatelessWidget {
       ),
         /* drawer: AppDrawer(), */
         body: Center(
-          child:Column(
+          child:ListView(
             children: getShop(snapshot1, context, user),
             
           ),
@@ -68,7 +68,12 @@ getShop(AsyncSnapshot<QuerySnapshot> snapshot, context, user){
                               leading: Icon(Icons.shopping_basket, size: 50),
                               title: Text(doc['cadena'], style: TextStyle(fontSize: 25)),
                               
-                              trailing: Icon(Icons.more_vert),
+                              trailing: Checkbox(
+                                  value: false,
+                                  onChanged: (bool value) {
+                                      
+                                  },
+                              ),
                               onTap: () {
                                 //Navigator.of(context).push(MaterialPageRoute(
                                 //builder: (BuildContext context) => GoPremium(user: user)));

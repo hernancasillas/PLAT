@@ -67,7 +67,7 @@ class _ViewRecipeState extends State<ViewRecipe> {
 
             if(!snapshot.hasData)
               {
-                return Text("Loading");
+                return Loading();
               }
               var recipeDocument = snapshot.data;
 
