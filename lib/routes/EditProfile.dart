@@ -11,8 +11,9 @@ import 'package:examen_flutter/routes/Perfil.dart';
 
 class EditProfile extends StatelessWidget {
   static const String routeName = '/routes/EditProfile';
-  final username = TextEditingController(text: 'Nombre');
-  final password = TextEditingController();
+  final username = TextEditingController();
+  final correo = TextEditingController();
+  final nombre = TextEditingController();
   final user;
   final name;
   final email;
@@ -22,7 +23,7 @@ class EditProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-    final namefield = TextField(
+    final usernameField = TextField(
       
           style: style,
           decoration: InputDecoration(
@@ -33,7 +34,7 @@ class EditProfile extends StatelessWidget {
               controller: username,
         );
     final emailField = TextField(
-          
+          controller: correo,
           style: style,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -43,7 +44,7 @@ class EditProfile extends StatelessWidget {
           
         );
     final nameField = TextField(
-          
+          controller: nombre,
           style: style,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -58,8 +59,17 @@ class EditProfile extends StatelessWidget {
           ),
           onPressed: () {
             //guardar name e email
+            print(correo.text);
+            print(nombre.text);
+            print(username.text);
+                 Firestore.instance.collection('user').document(user.uid)
+                              .updateData({
+                                'email': correo.text,
+                                'name': nombre.text,
+                                'username': username.text 
+                              });
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Perfil(user: user)));
+                  builder: (BuildContext context) => Perfil(user: user))); 
             },
           child: Text("Save",
             textAlign: TextAlign.center,
@@ -129,7 +139,7 @@ class EditProfile extends StatelessWidget {
                           ),
                         ),
                   SizedBox(height: 45.0),
-                  namefield,
+                  usernameField,
                   SizedBox(height: 25.0),
                   emailField,
                   SizedBox(height: 25.0),

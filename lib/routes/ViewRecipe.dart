@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:examen_flutter/routes/ViewAllRecipes.dart';
 /* import 'package:examen_flutter/genShoppingList.dart';
 import 'package:examen_flutter/main.dart'; */
 import 'package:examen_flutter/widgets/drawer.dart';
@@ -139,7 +140,14 @@ class _ViewRecipeState extends State<ViewRecipe> {
                     Text(widget.steps,style:TextStyle(fontSize: 16), textAlign: TextAlign.left,),
                   ),
                   SizedBox(height: 50.0),
-                   RaisedGradientButton(
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(15, 30, 15, 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children:<Widget>[
+                        Container(
+                          child:
+                           RaisedGradientButton(
                       width: 150,
                       
                       gradient: LinearGradient(
@@ -160,6 +168,32 @@ class _ViewRecipeState extends State<ViewRecipe> {
                         color: Colors.white, fontWeight: FontWeight.bold)
                       ),          
                     ),
+                          
+                        ),
+                        Container(child: 
+                        RaisedGradientButton(
+                      width: 150,
+                      
+                      gradient: LinearGradient(
+                        colors: <Color>[Color(0xff01ac4d3),Color(0xff0299cce),]
+                      ),
+                      onPressed: () {
+                            
+                              //return await myIngRecCollection.add({'cadena': sentence, 'recipeid': recid});
+                              Navigator.of(context).push(MaterialPageRoute(
+                               builder: (BuildContext context) => ViewAllRecipes(user: widget.user,)));
+                      },
+                      child: Text("View All",
+                        textAlign: TextAlign.center,
+                        style: style.copyWith(
+                        color: Colors.white, fontWeight: FontWeight.bold)
+                      ),          
+                    ),)
+                      ]
+                    ),
+                  ),
+                   
+                   
                 ],
               ),
               ],
