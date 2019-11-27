@@ -322,6 +322,7 @@ class _AddRecipeState extends State<AddRecipe> {
                                 log('Ings ' + ing);
                               }
                               log('Steps ' + recipeSteps.text);
+                              log('Image ' + imageRoute);
                               addRecipeToDB(widget.user, recipeName.text, recipeRating.round().toString(), recipeSteps.text, imageRoute, recipesLength+1);
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (BuildContext context) => Wrapper(

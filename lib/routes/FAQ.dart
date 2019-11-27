@@ -1,4 +1,3 @@
-import 'package:examen_flutter/routes/ForgotPassword.dart' as prefix0;
 import 'package:examen_flutter/widgets/drawer.dart';
 import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
@@ -52,27 +51,27 @@ class Entry {
 // raiz
 final List<Entry> data = <Entry>[
   Entry(
-    'HOW ADD A RECIPE',
+    'HOW TO ADD A RECIPE',
     <Entry>[
       Entry('-Go Home, press the Icon Plus'),
-      Entry('--Select the number of stars for you new recipe'),
-      Entry('-Then, add an ingrediente, you can add the ones you want'),
-      Entry('-Introduce the procedure of your recipe,inside the box Steps'),
+      Entry('-Select the number of stars for you new recipe'),
+      Entry('-Then, add an ingredient, you can add the ingredients you want'),
+      Entry('-Introduce the steps of your recipe, inside the box Steps'),
       Entry('-Press Change Picture to select a image for your new recipe'),
       Entry('-Press Add Recipe'),
     ],
   ),
   Entry(
-    'PAY PREMIUM BUT I DONT SEE MY BENEFITS',
+    'I PAID PREMIUM AND I CAN\'T SEE THE BENEFITS',
     <Entry>[
       Entry('-Restart the app'),
-      Entry('-If the problem persists ,please contact us'),
+      Entry('-If the problem persists, please contact us'),
     ],
   ),
   Entry(
     'MENU OF THE WEEK LOOKS SIMILAR',
     <Entry>[
-      Entry('In plat we are interested in having more variety, so it is necessary that you introduce more recipes to give you more variety in our recommendations'),
+      Entry('In PLAT we are interested in having more variety, so it is necessary that you introduce more recipes to give you more variety in our recommendations'),
      /* Entry(
         'titulo',
         <Entry>[
@@ -86,15 +85,15 @@ final List<Entry> data = <Entry>[
     
   ),
   Entry(
-    'ON PLAT , DO YOU HAVE CALORIE COUNTS',
+    'CAN I HAVE CALORIE COUNTS?',
     <Entry>[
-      Entry('Plat does not support this function yet '),
+      Entry('We are trying to improve the app, but right now it does not support this function yet '),
     ],
   ),
   Entry(
-    'EVERY TIME I HAVE PAY PREMIUM',
+    'WHEN DO I HAVE TO PAY PREMIUM AGAIN',
     <Entry>[
-      Entry('Memberships  premium plat is unlimited and only one payment '),
+      Entry('Premium memberships last forever! Just one payment and that is all'),
     ],
   ),
 ];

@@ -9,6 +9,7 @@ import 'package:examen_flutter/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
+
 class Menu extends StatelessWidget {
   final user;
   var lessthan = false;
@@ -96,8 +97,13 @@ class Menu extends StatelessWidget {
     }
       if(!lessthan)
       {
+        cont = 0;
         return favs
-            .map((doc) => new 
+            .map((doc){
+              cont++;
+              
+              if(cont < 7)
+              return new 
               Padding(       
                 padding: const EdgeInsets.all(30),
                 child: Container(
@@ -117,7 +123,7 @@ class Menu extends StatelessWidget {
                             height:100,
                             width: SizeConfig.screenWidth/4,
                             child:
-                              Text(_weekdays[cont]+"\n\n" + doc['name'],style:TextStyle(fontSize: 19),),
+                              Text(_weekdays[cont-1]+"\n\n" + doc['name'],style:TextStyle(fontSize: 19),),
                           ),
                         ],
                       ),
@@ -157,16 +163,20 @@ class Menu extends StatelessWidget {
                 ),
               ),
           
-            )
-            
+            );
+            }
       )
             .toList();
             
       }
       else
       {
+        cont = 0;
         return favs
-            .map((doc) => new 
+            .map((doc) {
+              cont++;
+              if(cont < 7)
+              return new 
               Padding(       
                 padding: const EdgeInsets.all(30),
                 child: Column(
@@ -187,7 +197,7 @@ class Menu extends StatelessWidget {
                             height:100,
                             width: SizeConfig.screenWidth/4,
                             child:
-                              Text(_weekdays[cont]+"\n\n" + doc['name'],style:TextStyle(fontSize: 19),),
+                              Text(_weekdays[cont-1]+"\n\n" + doc['name'],style:TextStyle(fontSize: 19),),
                           ),
                         ],
                       ),
@@ -228,8 +238,8 @@ class Menu extends StatelessWidget {
                 ],
               ),
           
-            ),
-          )
+            );
+            })
             .toList();
       }
   }
